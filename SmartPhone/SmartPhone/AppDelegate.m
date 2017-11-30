@@ -57,7 +57,7 @@
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
     self.window.rootViewController = nav;
     
-//    NSLog(@"ip:%@",[self localIPAddress]);
+    NSLog(@"ip:%@",[self localIPAddress]);
     return YES;
 }
 

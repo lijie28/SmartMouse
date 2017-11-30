@@ -15,7 +15,7 @@
 		04AC3A5B1FCF096300102DA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AC3A591FCF096300102DA6 /* LaunchScreen.storyboard */; };
 		04AC3A661FCF096300102DA6 /* SmartPhoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AC3A651FCF096300102DA6 /* SmartPhoneTests.m */; };
 		04AC3A711FCF096300102DA6 /* SmartPhoneUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AC3A701FCF096300102DA6 /* SmartPhoneUITests.m */; };
-		6A85D7E61FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A85D7E51FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.m */; };
+		6A85D7E61FCFADE8003E4BEB /* UDPManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A85D7E51FCFADE8003E4BEB /* UDPManage.m */; };
 		6A85D7E91FCFAF1B003E4BEB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A85D7E81FCFAEDE003E4BEB /* CFNetwork.framework */; };
 		8915E1FF29FF0237FAE1F5A2 /* libPods-SmartPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 971E7E9091422A62659FF327 /* libPods-SmartPhone.a */; };
 /* End PBXBuildFile section */
@@ -55,8 +55,8 @@
 		04AC3A701FCF096300102DA6 /* SmartPhoneUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartPhoneUITests.m; sourceTree = "<group>"; };
 		04AC3A721FCF096300102DA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EF3C3B62FD8286FE907B907 /* Pods-SmartPhone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPhone.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPhone/Pods-SmartPhone.release.xcconfig"; sourceTree = "<group>"; };
-		6A85D7E41FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYUDPBroadCastAndGetIP.h; sourceTree = "<group>"; };
-		6A85D7E51FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYUDPBroadCastAndGetIP.m; sourceTree = "<group>"; };
+		6A85D7E41FCFADE8003E4BEB /* UDPManage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDPManage.h; sourceTree = "<group>"; };
+		6A85D7E51FCFADE8003E4BEB /* UDPManage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UDPManage.m; sourceTree = "<group>"; };
 		6A85D7E81FCFAEDE003E4BEB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		971E7E9091422A62659FF327 /* libPods-SmartPhone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmartPhone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB49200B41FF4E34FDE6868 /* Pods-SmartPhone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPhone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPhone/Pods-SmartPhone.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,8 +118,8 @@
 				04AC3A4F1FCF096200102DA6 /* AppDelegate.m */,
 				04AC3A511FCF096200102DA6 /* ViewController.h */,
 				04AC3A521FCF096200102DA6 /* ViewController.m */,
-				6A85D7E41FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.h */,
-				6A85D7E51FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.m */,
+				6A85D7E41FCFADE8003E4BEB /* UDPManage.h */,
+				6A85D7E51FCFADE8003E4BEB /* UDPManage.m */,
 				04AC3A541FCF096200102DA6 /* Main.storyboard */,
 				04AC3A571FCF096300102DA6 /* Assets.xcassets */,
 				04AC3A591FCF096300102DA6 /* LaunchScreen.storyboard */,
@@ -361,7 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A85D7E61FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.m in Sources */,
+				6A85D7E61FCFADE8003E4BEB /* UDPManage.m in Sources */,
 				04AC3A531FCF096200102DA6 /* ViewController.m in Sources */,
 				04AC3A501FCF096200102DA6 /* AppDelegate.m in Sources */,
 				04AC3A4D1FCF096200102DA6 /* main.m in Sources */,
