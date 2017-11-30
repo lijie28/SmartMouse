@@ -15,6 +15,9 @@
 		04AC3A5B1FCF096300102DA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AC3A591FCF096300102DA6 /* LaunchScreen.storyboard */; };
 		04AC3A661FCF096300102DA6 /* SmartPhoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AC3A651FCF096300102DA6 /* SmartPhoneTests.m */; };
 		04AC3A711FCF096300102DA6 /* SmartPhoneUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AC3A701FCF096300102DA6 /* SmartPhoneUITests.m */; };
+		6A85D7E61FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A85D7E51FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.m */; };
+		6A85D7E91FCFAF1B003E4BEB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A85D7E81FCFAEDE003E4BEB /* CFNetwork.framework */; };
+		8915E1FF29FF0237FAE1F5A2 /* libPods-SmartPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 971E7E9091422A62659FF327 /* libPods-SmartPhone.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,12 @@
 		04AC3A6C1FCF096300102DA6 /* SmartPhoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartPhoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04AC3A701FCF096300102DA6 /* SmartPhoneUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartPhoneUITests.m; sourceTree = "<group>"; };
 		04AC3A721FCF096300102DA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EF3C3B62FD8286FE907B907 /* Pods-SmartPhone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPhone.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPhone/Pods-SmartPhone.release.xcconfig"; sourceTree = "<group>"; };
+		6A85D7E41FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYUDPBroadCastAndGetIP.h; sourceTree = "<group>"; };
+		6A85D7E51FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYUDPBroadCastAndGetIP.m; sourceTree = "<group>"; };
+		6A85D7E81FCFAEDE003E4BEB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		971E7E9091422A62659FF327 /* libPods-SmartPhone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmartPhone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAB49200B41FF4E34FDE6868 /* Pods-SmartPhone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPhone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPhone/Pods-SmartPhone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A85D7E91FCFAF1B003E4BEB /* CFNetwork.framework in Frameworks */,
+				8915E1FF29FF0237FAE1F5A2 /* libPods-SmartPhone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +96,8 @@
 				04AC3A641FCF096300102DA6 /* SmartPhoneTests */,
 				04AC3A6F1FCF096300102DA6 /* SmartPhoneUITests */,
 				04AC3A491FCF096200102DA6 /* Products */,
+				6A85D7E71FCFAEDE003E4BEB /* Frameworks */,
+				5AC5F098D568E4DDA3839FD2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +118,8 @@
 				04AC3A4F1FCF096200102DA6 /* AppDelegate.m */,
 				04AC3A511FCF096200102DA6 /* ViewController.h */,
 				04AC3A521FCF096200102DA6 /* ViewController.m */,
+				6A85D7E41FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.h */,
+				6A85D7E51FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.m */,
 				04AC3A541FCF096200102DA6 /* Main.storyboard */,
 				04AC3A571FCF096300102DA6 /* Assets.xcassets */,
 				04AC3A591FCF096300102DA6 /* LaunchScreen.storyboard */,
@@ -140,6 +155,24 @@
 			path = SmartPhoneUITests;
 			sourceTree = "<group>";
 		};
+		5AC5F098D568E4DDA3839FD2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AAB49200B41FF4E34FDE6868 /* Pods-SmartPhone.debug.xcconfig */,
+				3EF3C3B62FD8286FE907B907 /* Pods-SmartPhone.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6A85D7E71FCFAEDE003E4BEB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6A85D7E81FCFAEDE003E4BEB /* CFNetwork.framework */,
+				971E7E9091422A62659FF327 /* libPods-SmartPhone.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04AC3A751FCF096300102DA6 /* Build configuration list for PBXNativeTarget "SmartPhone" */;
 			buildPhases = (
+				A70844E9C7E84044D3A88713 /* [CP] Check Pods Manifest.lock */,
 				04AC3A441FCF096200102DA6 /* Sources */,
 				04AC3A451FCF096200102DA6 /* Frameworks */,
 				04AC3A461FCF096200102DA6 /* Resources */,
+				5454C161A53222085199F958 /* [CP] Embed Pods Frameworks */,
+				37883665AAB17991F66980EC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -207,6 +243,7 @@
 				TargetAttributes = {
 					04AC3A471FCF096200102DA6 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 9622PG928E;
 						ProvisioningStyle = Automatic;
 					};
 					04AC3A601FCF096300102DA6 = {
@@ -268,11 +305,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		37883665AAB17991F66980EC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartPhone/Pods-SmartPhone-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5454C161A53222085199F958 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartPhone/Pods-SmartPhone-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A70844E9C7E84044D3A88713 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmartPhone-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		04AC3A441FCF096200102DA6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A85D7E61FCFADE8003E4BEB /* LYUDPBroadCastAndGetIP.m in Sources */,
 				04AC3A531FCF096200102DA6 /* ViewController.m in Sources */,
 				04AC3A501FCF096200102DA6 /* AppDelegate.m in Sources */,
 				04AC3A4D1FCF096200102DA6 /* main.m in Sources */,
@@ -420,8 +509,10 @@
 		};
 		04AC3A761FCF096300102DA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAB49200B41FF4E34FDE6868 /* Pods-SmartPhone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9622PG928E;
 				INFOPLIST_FILE = SmartPhone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lijie.SmartPhone;
@@ -431,8 +522,10 @@
 		};
 		04AC3A771FCF096300102DA6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EF3C3B62FD8286FE907B907 /* Pods-SmartPhone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9622PG928E;
 				INFOPLIST_FILE = SmartPhone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lijie.SmartPhone;
@@ -505,6 +598,7 @@
 				04AC3A771FCF096300102DA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04AC3A781FCF096300102DA6 /* Build configuration list for PBXNativeTarget "SmartPhoneTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +607,7 @@
 				04AC3A7A1FCF096300102DA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04AC3A7B1FCF096300102DA6 /* Build configuration list for PBXNativeTarget "SmartPhoneUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +616,7 @@
 				04AC3A7D1FCF096300102DA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
