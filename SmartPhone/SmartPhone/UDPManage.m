@@ -3,8 +3,9 @@
 #import "UDPManage.h"
 #import "GCDAsyncUdpSocket.h"
 @interface UDPManage ()<GCDAsyncUdpSocketDelegate>
+
 /** block */
-@property (nonatomic, weak) ReceiveBlock receiveBlock;
+@property (nonatomic, copy) ReceiveBlock receiveBlock;
 @end
 
 @implementation UDPManage
@@ -30,7 +31,7 @@ static UDPManage *myUDPManage = nil;
     //2.banding一个端口(可选),如果不绑定端口, 那么就会随机产生一个随机的电脑唯一的端口
     //端口数字范围(1024,2^16-1)
     NSError * error = nil;
-    [sendUdpSocket bindToPort:123 error:&error];
+    [sendUdpSocket bindToPort:1234 error:&error];
     //启用广播
     [sendUdpSocket enableBroadcast:YES error:&error];
     if (error) {//监听错误打印错误信息
@@ -42,23 +43,37 @@ static UDPManage *myUDPManage = nil;
     
 }
 //5.发送消息
--(void)sendMessage:(NSString *)strM{
+-(void)sendMessage:(id )mes port:(uint16_t)port{
+    NSData *data;
+    if ([mes isKindOfClass:[NSString class]]) {
+        data = [mes dataUsingEncoding:NSUTF8StringEncoding];
+    }else if([mes isKindOfClass:[NSDictionary class]]) {
+        data = [NSJSONSerialization dataWithJSONObject:mes options:NSJSONWritingPrettyPrinted error:nil];
+    }
     
-//    NSString *s = @"mapleTest";
-    NSData *data = [strM dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *host = @"255.255.255.255";//此处如果写成固定的IP就是对特定的server监测；我这种写法是为了多方监测
-//    NSString *host = @"192.168.26.62";
-    uint16_t port = 123;//通过端口监测
-    [sendUdpSocket sendData:data toHost:host port:port withTimeout:-1 tag:111];
+    
+//    NSDictionary *dic = @{@"value":mes};
+//    
+//    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//    NSLog(@"NSDictionary 转 NSData = %@",data);
+//    NSLog(@"NSData 转 NSDictionary =%@",dictionary);
+    
+    
+    
+//    NSData *data = [strM dataUsingEncoding:NSUTF8StringEncoding];
+//    NSString *host = @"255.255.255.255";//此处如果写成固定的IP就是对特定的server监测；我这种写法是为了多方监测
+    NSString *host = @"192.168.1.10";
+//    uint16_t port = 9527;//通过端口监测
+    [sendUdpSocket sendData:data toHost:host port:port withTimeout:-1 tag:100];
 }
 
 //6.相关的代理
 #pragma mark -GCDAsyncUdpSocketDelegate
 -(void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag{
-    NSLog(@"看看发送消息的标记：%ld",tag);
-    if (tag == 100) {
-        NSLog(@"表示标记为100的数据发送完成了");
-    }
+//    NSLog(@"发送消息的标记：%ld",tag);
+//    if (tag == 100) {
+//        NSLog(@"表示标记为100的数据发送完成了");
+//    }
 }
 
 -(void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error{
@@ -70,16 +85,19 @@ static UDPManage *myUDPManage = nil;
     NSString *ip = [GCDAsyncUdpSocket hostFromAddress:address];
     uint16_t port = [GCDAsyncUdpSocket portFromAddress:address];
     NSString *s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"filterContext：%@",filterContext);
+//    NSLog(@"sock：%@",sock);
     // 继续来等待接收下一次消息
     if (_receiveBlock) {
         _receiveBlock(ip,port,s);
     }
     
     [sock receiveOnce:nil];
-    //此处根据实际和硬件商定的需求决定是否主动回一条消息
+//    此处根据实际和硬件商定的需求决定是否主动回一条消息
+    
+//    if ([s isEqualToString:@"我收到了"])return;
+    
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-////        [self sendBackToHost:ip port:port withMessage:s];
+//        [self sendBackToHost:ip port:port withMessage:s];
 //    });
 }
 
@@ -94,11 +112,11 @@ static UDPManage *myUDPManage = nil;
     NSLog(@"udpSocket关闭");
 }
 
-//-(void)sendBackToHost:(NSString *)ip port:(uint16_t)port withMessage:(NSString *)s{
-//    NSString *msg = @"我收到了";
-//    NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
-////    [sendUdpSocket sendData:data toHost:ip port:port withTimeout:0.1 tag:200];
-//
-//}
+-(void)sendBackToHost:(NSString *)ip port:(uint16_t)port withMessage:(NSString *)s{
+    NSString *msg = @"我收到了";
+    NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+    [sendUdpSocket sendData:data toHost:ip port:port withTimeout:-1 tag:200];
+
+}
 
 @end
