@@ -24,14 +24,22 @@ class UdpServer(object):
             # print data['action']
             if data['action'] == 'mouseMove':
                 print data['value']
-                MouseCtrl.mouseMove(data['value']['x'],data['value']['y'])
+                MouseCtrl.mouseMove(data['value']['x'],data['value']['y'],data['value']['k'])
 
-            mes = "收到 %d" % count
-            sendDataLen = sock.sendto(mes,(remoteHost, remotePort))
-            count =  count+1
-            # print "revcData: ", revcData
-            # print "sendDataLen: ", sendDataLen
-            # print "remoteHost: ", remoteHost,"remotePort: ", remotePort
+
+            if data['action'] == 'mouseDoubleClick':
+                print 'double'
+                MouseCtrl.mouseDoubleClickHere()
+
+            if data['action'] == 'mouseSingleClick':
+                print 'single'
+                MouseCtrl.mouseLeftClickHere()
+
+
+            #回应
+            # mes = "收到 %d" % count
+            # sendDataLen = sock.sendto(mes,(remoteHost, remotePort))
+            # count =  count+1
 
 
             
