@@ -1,4 +1,5 @@
 #!/usr/bin/python  
+# -*- coding:utf8 -*-
 ''''' 
 Created on 2013-8-30 
  
@@ -8,6 +9,8 @@ import sys
 import time  
 from Quartz.CoreGraphics import *    
 
+# import os
+# import pyautogui as pag
 
 # enum {
 #   kVK_ANSI_A                    = 0x00,
@@ -76,6 +79,7 @@ from Quartz.CoreGraphics import *
 #   kVK_ANSI_Keypad8              = 0x5B,
 #   kVK_ANSI_Keypad9              = 0x5C
 
+
 def _keyBoardEvent():
     print '_keyBoardEvent'
     push = CGEventCreateKeyboardEvent(None, 0x1F, True)
@@ -87,8 +91,15 @@ def _mouseEvent(type, posx, posy):
     theEvent = CGEventCreateMouseEvent(None, type, (posx,posy), kCGMouseButtonLeft)  
     CGEventPost(kCGHIDEventTap, theEvent)  
       
-def mouseMove(posx, posy):  
+def mouseMoveTo(posx, posy):  
     _mouseEvent(kCGEventMouseMoved, posx, posy)  
+
+def mouseMove(posx, posy):  
+
+    ourEvent = CGEventCreate(None);  
+    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+    # print ,
+    _mouseEvent(kCGEventMouseMoved, currentpos.x+posx, currentpos.y+posy) 
       
 def mouseClickDown(posx, posy):  
     _mouseEvent(kCGEventLeftMouseDown, posx, posy)  
@@ -139,20 +150,44 @@ def mouseScroll(movement=30, direction=1):
   
 if __name__ == '__main__':  
 
-    _keyBoardEvent()
+    # _keyBoardEvent()#打印'o'
 
     ourEvent = CGEventCreate(None);  
     currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
-    # print currentpos.x,currentpos.y
-    time.sleep(1);  
-  
-    for i in range(5):  
-        # mouseScroll(40, 1)  
-        # mouseScroll(40, -1)  
-        time.sleep(1);  
-        mouseMove(40*i,1)
+    print currentpos.x,currentpos.y
+    # time.sleep(1);  
+    # # mouseMove
+    
+    # for i in range(5):  
+    #     # mouseScroll(40, 1)  
+    #     # mouseScroll(40, -1)  
+    #     time.sleep(1);  
+    #     mouseMove(40*i,1)
+
+    # hm = pyHook.HookManager()
+    # hm.HookKeyboard()
+    # hm.MouseAllButtonsDown = onMouseEvent
+    # hm.MouseAllButtonsUp = onMouseEvent
+    # hm.HookMouse()
+    # pythoncom.PumpMessages()
+    # onMouseEvent
+    # try:
+    #     while True:
+    #         print "Press Ctrl-C to end"
+    #         x,y = pag.position() #返回鼠标的坐标
+    #         posStr="Position:"+str(x).rjust(4)+','+str(y).rjust(4)
+    #         print posStr#打印坐标
+    #         time.sleep(0.2)
+    #         os.system('cls')#清楚屏幕
+    # except  KeyboardInterrupt:
+    #     print 'end....'
+
+    # print CGEventGetLocation(GetMousePoint)
+    # print CGEventGetLocation(1)
+
       
     # mouseclick(1610, 215)  
     # mousedoubleclick(1697, 561)  
-    time.sleep(1);  
+    # time.sleep(1);  
     #mouseMove(int(currentpos.x),int(currentpos.y)); # Restore mouse position  
+

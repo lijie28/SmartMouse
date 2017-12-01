@@ -26,7 +26,7 @@ int count;
     self.navigationController.navigationBar.hidden = YES;
     // Do any additional setup after loading the view, typically from a nib.
     NSLog(@"打开app");
-    self.showLog.text = @"打开app";
+//    self.showLog.text = @"打开app";
     self.btnSend.hidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -34,7 +34,7 @@ int count;
         
         NSLog(@"收到服务端的响应 [%@:%d] %@", ip, port, mes);
         
-        [self appendStr:mes];
+//        [self appendStr:mes];
     }];
 
     self.imageV.hidden = NO;
@@ -52,12 +52,21 @@ int count;
 
 #pragma mark--touch移动中
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+    
     UITouch *touch=[touches anyObject];
     
+//    NSLog(@"手指数：%lu",(unsigned long)touch.tapCount);
+    /*
+     - (CGPoint)locationInView:(nullableUIView *)view;//现在触摸的坐标
+     - (CGPoint)previousLocationInView:(nullableUIView *)view;//上一次触摸的坐标
+     - (CGPoint)preciseLocationInView:(nullableUIView *)view NS_AVAILABLE_IOS(9_1);//现在触摸的精确的坐标
+     - (CGPoint)precisePreviousLocationInView:(nullableUIView *)view NS_AVAILABLE_IOS(9_1);//上一次触摸的精确的坐标
+     */
     //取得当前位置
-    CGPoint current=[touch locationInView:self.view];
+    CGPoint current=[touch preciseLocationInView:self.view];//
     //取得前一个位置
-    CGPoint previous=[touch previousLocationInView:self.view];
+    CGPoint previous=[touch precisePreviousLocationInView:self.view];
     
     //移动前的中点位置
     CGPoint center=_imageV.center;
@@ -65,7 +74,7 @@ int count;
     CGPoint offset=CGPointMake(current.x-previous.x, current.y-previous.y);
     if (offset.x == 0&&offset.y == 0) return;
     
-    NSLog(@"X:%f Y:%f",offset.x,offset.y);
+//    NSLog(@"X:%f Y:%f",offset.x,offset.y);
     
     NSDictionary *dic =
   @{@"action":@"mouseMove",
@@ -77,6 +86,13 @@ int count;
     //重新设置新位置
     _imageV.center=CGPointMake(center.x+offset.x, center.y+offset.y);
     [[UDPManage shareUDPManage]sendMessage:dic port:9527];
+    
+    NSDate *aDate;
+    double aa = -[aDate timeIntervalSinceDate:[NSDate date]];
+    NSLog(@"%f",aa);
+    
+//    aDate = [[NSDate date] retain];
+    //    NSLog(@"%@",[NSDate date]);
 }
 
 
