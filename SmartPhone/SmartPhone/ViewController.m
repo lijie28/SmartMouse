@@ -171,11 +171,7 @@ int count;
 
 - (void)send
 {
-//    count ++;
-//    [[UDPManage shareUDPManage]sendMessage:[NSString stringWithFormat:@"发送：%d",count++] port:9527];
-    
-//    self.btnSend.transform
-    [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
+//    [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
 }
 
 - (void)interfaceOrientation:(UIInterfaceOrientation)orientation

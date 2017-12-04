@@ -80,9 +80,17 @@ from Quartz.CoreGraphics import *
 #   kVK_ANSI_Keypad9              = 0x5C
 
 
-def _keyBoardEvent():
+
+def _keyBoardCommandEvent(key):
+    push = CGEventCreateKeyboardEvent(None, key, True);
+    CGEventSetFlags(push, kCGEventFlagMaskCommand|kCGEventFlagMaskShift);
+    # print '有：',kCGEventFlagMaskShift,kCGEventFlagMaskOption
+    CGEventPost(kCGHIDEventTap, push);
+
+
+def _keyBoardEvent(key):
     print '_keyBoardEvent'
-    push = CGEventCreateKeyboardEvent(None, 0x1F, True)
+    push = CGEventCreateKeyboardEvent(None, key, True)
     CGEventPost(kCGHIDEventTap, push)
     # CFRelease(push)
 
@@ -179,6 +187,8 @@ if __name__ == '__main__':
     ourEvent = CGEventCreate(None);  
     currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
     print currentpos.x,currentpos.y
+    # _keyBoardEvent()
+    _keyBoardCommandEvent(0x11)
     # time.sleep(1);  
     # # mouseMove
     

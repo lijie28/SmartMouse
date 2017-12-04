@@ -12,5 +12,5 @@ typedef void(^ReceiveBlock)(NSString *ip,uint16_t port,NSString *mes);
 
 
 - (void)receiveBlock:(ReceiveBlock)receiveBlock;
-
+- (void)checkPort;
 @end
