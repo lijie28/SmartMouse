@@ -32,6 +32,8 @@ int count;
     self.btnSend.hidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     
+    
+    [[UDPManage shareUDPManage]checkAset];
     [[UDPManage shareUDPManage]receiveBlock:^(NSString *ip, uint16_t port, NSString *mes) {
         
         NSLog(@"收到服务端的响应 [%@:%d] %@", ip, port, mes);

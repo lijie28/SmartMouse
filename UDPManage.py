@@ -15,7 +15,7 @@ class UdpServer(object):
         print 'enter serve'
         count = 0
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.bind(('', 9527))       # 绑定同一个域名下的所有机器
+        sock.bind(('', 9228))       # 绑定同一个域名下的所有机器
         
         while True:
             revcData, (remoteHost, remotePort) = sock.recvfrom(1024)
@@ -27,19 +27,24 @@ class UdpServer(object):
                 MouseCtrl.mouseMove(data['value']['x'],data['value']['y'],data['value']['k'])
 
 
-            if data['action'] == 'mouseDoubleClick':
+            elif data['action'] == 'mouseDoubleClick':
                 print 'double'
                 MouseCtrl.mouseDoubleClickHere()
 
-            if data['action'] == 'mouseSingleClick':
+            elif data['action'] == 'mouseSingleClick':
                 print 'single'
                 MouseCtrl.mouseLeftClickHere()
 
-
+            elif data['action'] == 'searchForConection':
+                # mes = "收到 %d" % count
+                name = socket.getfqdn(socket.gethostname()) 
+                mes = str({'action': 'receive','value': name })
+                
+                sendDataLen = sock.sendto(mes,(remoteHost, remotePort))
+            
+                
             #回应
-            # mes = "收到 %d" % count
-            # sendDataLen = sock.sendto(mes,(remoteHost, remotePort))
-            # count =  count+1
+            # 
 
 
             

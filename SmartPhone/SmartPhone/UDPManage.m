@@ -67,6 +67,18 @@ static UDPManage *myUDPManage = nil;
     [sendUdpSocket sendData:data toHost:host port:port withTimeout:-1 tag:100];
 }
 
+
+- (void)checkAset
+{
+    
+    NSDictionary *mes = @{@"action":@"searchForConection"};
+    NSData *data = [NSJSONSerialization dataWithJSONObject:mes options:NSJSONWritingPrettyPrinted error:nil];
+//    NSData *data = [@"searchForConection" dataUsingEncoding:NSUTF8StringEncoding];
+        NSString *host = @"255.255.255.255";//此处如果写成固定的IP就是对特定的server监测；我这种写法是为了多方监测
+//    NSString *host = @"192.168.26.62";
+        uint16_t port = 10528;//通过端口监测
+    [sendUdpSocket sendData:data toHost:host port:port withTimeout:-1 tag:100];
+}
 //6.相关的代理
 #pragma mark -GCDAsyncUdpSocketDelegate
 -(void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag{
