@@ -69,8 +69,8 @@ static UDPManage *myUDPManage = nil;
     
     
 //    NSData *data = [strM dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *host = @"255.255.255.255";//此处如果写成固定的IP就是对特定的server监测；我这种写法是为了多方监测
-//    NSString *host = @"192.168.26.62";
+//    NSString *host = @"255.255.255.255";//此处如果写成固定的IP就是对特定的server监测；我这种写法是为了多方监测
+    NSString *host = @"192.168.26.62";
 //    uint16_t port = 9527;//通过端口监测
     [sendUdpSocket sendData:data toHost:host port:port withTimeout:-1 tag:100];
 }

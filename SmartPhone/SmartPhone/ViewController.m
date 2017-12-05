@@ -13,7 +13,8 @@
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 
 @interface ViewController ()
-@property (strong, nonatomic)UIView *touchBg;
+@property (weak, nonatomic) IBOutlet UIView *viewTouch;
+//@property (strong, nonatomic)UIView *touchBg;
 @property (strong, nonatomic)UILabel *showLog;
 @property (strong, nonatomic)UIButton *btnSend;
 @property (strong, nonatomic)UIImageView *imageV;
@@ -27,20 +28,30 @@ int count;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
-    // Do any additional setup after loading the view, typically from a nib.
-    self.touchBg.hidden = NO;
+    
+    [self addGesture];
     self.btnSend.hidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     
     [[UDPManage shareUDPManage]receiveBlock:^(NSString *ip, uint16_t port, NSString *mes) {
-        
         NSLog(@"收到服务端的响应 [%@:%d] %@", ip, port, mes);
-        
 //        [self appendStr:mes];
     }];
 
     self.imageV.hidden = NO;
     
+}
+
+
+- (void)addGesture
+{
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTap:)];
+    [singleTapGestureRecognizer setNumberOfTapsRequired:1];
+    [_viewTouch addGestureRecognizer:singleTapGestureRecognizer];
+    
+    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTap:)];
+    [doubleTapGestureRecognizer setNumberOfTapsRequired:2];
+    [_viewTouch addGestureRecognizer:doubleTapGestureRecognizer];
 }
 
 
@@ -81,7 +92,7 @@ int count;
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
     UITouch *touch = [touches anyObject];
-    if (touch.view != self.touchBg) return;
+    if (touch.view != self.viewTouch) return;
 //    NSLog(@"手指数：%lu",(unsigned long)touch.tapCount);
     /*
      - (CGPoint)locationInView:(nullableUIView *)view;//现在触摸的坐标
@@ -171,7 +182,7 @@ int count;
 
 - (void)send
 {
-//    [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
+    [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
 }
 
 - (void)interfaceOrientation:(UIInterfaceOrientation)orientation
@@ -189,15 +200,15 @@ int count;
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
-    return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
-    
-}
-
-- (BOOL)shouldAutorotate{
-    
-    return NO;
-}
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+//    return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+//    
+//}
+//
+//- (BOOL)shouldAutorotate{
+//    
+//    return NO;
+//}
 
 //- (NSUInteger)supportedInterfaceOrientations﻿{
 //    return UIInterfaceOrientationMaskPortrait;
@@ -242,22 +253,16 @@ int count;
     }
     return _btnSend;
 }
-- (UIView *)touchBg
-{
-    if (!_touchBg) {
-        _touchBg = [[UIView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight - 200)];
-        
-        _touchBg.backgroundColor = [UIColor lightGrayColor];
-        [self.view addSubview:_touchBg];
-        
-        UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTap:)];
-        [singleTapGestureRecognizer setNumberOfTapsRequired:1];
-        [_touchBg addGestureRecognizer:singleTapGestureRecognizer];
-        
-        UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTap:)];
-        [doubleTapGestureRecognizer setNumberOfTapsRequired:2];
-        [_touchBg addGestureRecognizer:doubleTapGestureRecognizer];
-    }
-    return _touchBg;
-}
+//- (UIView *)touchBg
+//{
+//    if (!_touchBg) {
+//        _touchBg = [[UIView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight - 200)];
+//
+//        _touchBg.backgroundColor = [UIColor lightGrayColor];
+//        [self.view addSubview:_touchBg];
+//
+//
+//    }
+//    return _touchBg;
+//}
 @end

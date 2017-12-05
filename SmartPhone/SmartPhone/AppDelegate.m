@@ -44,20 +44,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //创建窗口
-    self.window = [[UIWindow alloc]init];
-    self.window.frame = [UIScreen mainScreen].bounds;
-    
-    
-    //初始化tabBarVC
-    ViewController *vc = [[ViewController alloc]init];
-    
-    
-    //设置窗口的根控制器
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
-    self.window.rootViewController = nav;
-    
-    NSLog(@"ip:%@",[self localIPAddress]);
+//    //创建窗口
+//    self.window = [[UIWindow alloc]init];
+//    self.window.frame = [UIScreen mainScreen].bounds;
+//    
+//    
+//    //初始化tabBarVC
+//    ViewController *vc = [[ViewController alloc]init];
+//    
+//    
+//    //设置窗口的根控制器
+//    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+//    self.window.rootViewController = nav;
+    NSLog(@"%@",application.delegate.window.rootViewController);
+//    NSLog(@"ip:%@",[self localIPAddress]);
     return YES;
 }
 
