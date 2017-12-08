@@ -8,9 +8,9 @@ Created on 2013-8-30
 import sys  
 import time  
 from Quartz.CoreGraphics import *    
-import pyautogui
+# import pyautogui
 # from pykeyboard import PyKeyboard
-# import pyperclip
+import pyperclip
 # import os
 # import pyautogui as pag
 

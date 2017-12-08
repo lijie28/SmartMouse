@@ -49,14 +49,12 @@ int count;
         
         NSLog(@"收到服务端的响应 [%@:%d] %@", ip, port, mes);
         NSDictionary *dic = [self dictionaryWithJsonString:mes];
-//        NSLog(@"%@",dic);
         if([dic[@"action"] isEqualToString: @"receive"])
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.showName.text = dic[@"value"];
                 self.dicNet = @{@"ip":ip,@"port":@(port)};
             });
-
         }
     }];
 
@@ -70,6 +68,7 @@ int count;
     NSLog(@"点击了确认");
     [self confirmInputText];
     [self cleanText];
+    [self closeKeyboard];
     return YES;
 }
 
