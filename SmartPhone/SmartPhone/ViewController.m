@@ -12,13 +12,22 @@
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *viewTouch;
 //@property (strong, nonatomic)UIView *touchBg;
-@property (strong, nonatomic)UILabel *showLog;
-@property (strong, nonatomic)UIButton *btnSend;
+//@property (strong, nonatomic)UILabel *showLog;
+//@property (strong, nonatomic)UIButton *btnSend;
 @property (strong, nonatomic)UIImageView *imageV;
 @property (assign, nonatomic)NSTimeInterval lastTime;
+@property (weak, nonatomic) IBOutlet UILabel *showName;
+@property (weak, nonatomic) IBOutlet UIButton *checkSet;
+@property (weak, nonatomic) IBOutlet UIButton *leftBtn;
+@property (weak, nonatomic) IBOutlet UIButton *rightBtn;
+@property (weak, nonatomic) IBOutlet UIButton *inputText;
+@property (weak, nonatomic) IBOutlet UIButton *closeKB;
+@property (weak, nonatomic) IBOutlet UITextField *textInput;
+
+@property (strong, nonatomic)NSDictionary *dicNet;
 
 @end
 int count;
@@ -28,25 +37,84 @@ int count;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
-    // Do any additional setup after loading the view, typically from a nib.
-//    self.touchBg.hidden = NO;
-//    self.btnSend.hidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     
+    [self.checkSet addTarget:self action:@selector(check) forControlEvents:UIControlEventTouchUpInside];
+    [self.leftBtn addTarget:self action:@selector(leftLongClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.rightBtn addTarget:self action:@selector(rightClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.inputText addTarget:self action:@selector(startInputText) forControlEvents:UIControlEventTouchUpInside];
+    [self.closeKB addTarget:self action:@selector(closeKeyboard) forControlEvents:UIControlEventTouchUpInside];
     
-    [[UDPManage shareUDPManage]checkAset];
-    [[UDPManage shareUDPManage]receiveBlock:^(NSString *ip, uint16_t port, NSString *mes) {
+    [[UDPManage shareUDPManage]receiveBlock:^(NSString *ip, uint16_t port, id mes) {
         
         NSLog(@"收到服务端的响应 [%@:%d] %@", ip, port, mes);
-        
-//        [self appendStr:mes];
+        NSDictionary *dic = [self dictionaryWithJsonString:mes];
+//        NSLog(@"%@",dic);
+        if([dic[@"action"] isEqualToString: @"receive"])
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.showName.text = dic[@"value"];
+                self.dicNet = @{@"ip":ip,@"port":@(port)};
+            });
+
+        }
     }];
 
     self.imageV.hidden = NO;
+    self.textInput.delegate = self;
     [self addGesture];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSLog(@"点击了确认");
+    [self cleanText];
+    return YES;
+}
 
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
+- (void)check
+{
+    self.showName.text = @"check";
+    [[UDPManage shareUDPManage]checkAset];
+}
+
+- (void)cleanText
+{
+    
+}
+
+- (void)confirmInputText
+{
+    self.textInput.text = @"";
+}
+
+- (void)startInputText
+{
+    self.textInput.hidden = NO;
+    [self.textInput becomeFirstResponder];
+}
+
+- (void)closeKeyboard
+{
+    self.textInput.hidden = YES;
+    [self.textInput resignFirstResponder];
+}
 - (void)addGesture
 {
     UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTap:)];
@@ -60,27 +128,62 @@ int count;
 
 
 #pragma mark - 手势部分
+
+- (void)leftLongClick
+{
+    if (!_dicNet) return;
+    NSDictionary *dic = nil;
+    if (self.leftBtn.tag == 0) {
+        NSLog(@"按下");
+        self.leftBtn.tag = 1;
+        dic =
+        @{@"action":@"leftClickDown",
+          };
+        self.leftBtn.backgroundColor = [UIColor grayColor];
+    }else{
+        NSLog(@"松起");
+        self.leftBtn.tag = 0;
+        dic =
+        @{@"action":@"leftClickUp",
+          };
+        self.leftBtn.backgroundColor = [UIColor lightGrayColor];
+    }
+    
+    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
+}
+
+- (void)rightClick
+{
+    
+    if (!_dicNet) return;
+    NSLog(@"右击");
+    NSDictionary *dic =
+    @{@"action":@"rightClick",
+      };
+    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
+}
+
 - (void)singleTap:(UITapGestureRecognizer *)singleTap
 {
+    if (!_dicNet) return;
     NSLog(@"单击");
     NSDictionary *dic =
     @{@"action":@"mouseSingleClick",
       };
-    [[UDPManage shareUDPManage]sendMessage:dic port:9527];
+    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
 }
 - (void)doubleTap:(UITapGestureRecognizer *)doubleTap
 {
-    
+    if (!_dicNet) return;
     NSLog(@"双击");
-    
     NSDictionary *dic =
     @{@"action":@"mouseDoubleClick",
       };
-    [[UDPManage shareUDPManage]sendMessage:dic port:9527];
+    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
 }
 
 
-#pragma mark--touch开始的时候
+#pragma mark - touch开始的时候
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
     UITouch *touch=[touches anyObject];
@@ -92,9 +195,10 @@ int count;
     _lastTime = 0;
 }
 
-#pragma mark--touch移动中
+//#pragma mark--touch移动中
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
+    if (!_dicNet) return;
     UITouch *touch = [touches anyObject];
 //    if (touch.view != self.viewTouch) return;
 //    NSLog(@"手指数：%lu",(unsigned long)touch.tapCount);
@@ -151,11 +255,11 @@ int count;
       @"value":@{@"x":@(offset.x),@"y":@(offset.y),@"k":@(k)
                  },
       };
-    [[UDPManage shareUDPManage]sendMessage:dic port:9527];
+    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
 }
 
 
-#pragma mark--touch移动结束
+//#pragma mark--touch移动结束
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     UITouch *touch=[touches anyObject];
     
@@ -177,19 +281,11 @@ int count;
 }
 
 
-- (void)appendStr:(NSString *)str
-{
-    
-    self.showLog.text = [NSString stringWithFormat:@"%@ \n%@",self.showLog.text,str];
-}
 
+#pragma mark - else
 
 - (void)send
 {
-//    count ++;
-//    [[UDPManage shareUDPManage]sendMessage:[NSString stringWithFormat:@"发送：%d",count++] port:9527];
-    
-//    self.btnSend.transform
     [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
 }
 
@@ -236,27 +332,5 @@ int count;
 }
 
 
-- (UILabel *)showLog
-{
-    if (!_showLog) {
-        _showLog = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight - 100)];
-        _showLog.textAlignment = NSTextAlignmentCenter;
-        _showLog.numberOfLines = 0;
-        [self.view addSubview:_showLog];
-    }
-    return _showLog;
-}
 
-- (UIButton *)btnSend
-{
-    if (!_btnSend) {
-        _btnSend = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth/2- 200/2, 20, 200, 60)];
-        [_btnSend addTarget:self action:@selector(send) forControlEvents:UIControlEventTouchUpInside];
-        _btnSend.backgroundColor = [UIColor grayColor];
-        [_btnSend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_btnSend setTitle:@"切换" forState:UIControlStateNormal];
-        [self.view addSubview:_btnSend];
-    }
-    return _btnSend;
-}
 @end

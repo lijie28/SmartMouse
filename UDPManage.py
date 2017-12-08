@@ -34,11 +34,24 @@ class UdpServer(object):
             elif data['action'] == 'mouseSingleClick':
                 print 'single'
                 MouseCtrl.mouseLeftClickHere()
+            elif data['action'] == 'leftClickDown':
+                print 'leftClickDown'
+                MouseCtrl.mouseLeftClickDownHere()
+            elif data['action'] == 'leftClickUp':
+                print 'leftClickUp'
+                MouseCtrl.mouseLeftClickUpHere()
+            elif data['action'] == 'rightClick':
+                print 'rightClick'
+                MouseCtrl.mouseRightClickHere()
+            elif data['action'] == 'keyboardInput':
+                print 'keyboardInput'
+                MouseCtrl.mouseRightClickHere()
+
 
             elif data['action'] == 'searchForConection':
                 # mes = "收到 %d" % count
                 name = socket.getfqdn(socket.gethostname()) 
-                mes = str({'action': 'receive','value': name })
+                mes = json.dumps({'action': 'receive','value': name })
                 
                 sendDataLen = sock.sendto(mes,(remoteHost, remotePort))
             

@@ -43,7 +43,8 @@ static UDPManage *myUDPManage = nil;
     
 }
 //5.发送消息
--(void)sendMessage:(id )mes port:(uint16_t)port{
+-(void)sendMessage:(id )mes ipHost:(NSString *)ipHost port:(uint16_t)port
+{
     NSData *data;
     if ([mes isKindOfClass:[NSString class]]) {
         data = [mes dataUsingEncoding:NSUTF8StringEncoding];
@@ -51,18 +52,7 @@ static UDPManage *myUDPManage = nil;
         data = [NSJSONSerialization dataWithJSONObject:mes options:NSJSONWritingPrettyPrinted error:nil];
     }
     
-    
-//    NSDictionary *dic = @{@"value":mes};
-//    
-//    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//    NSLog(@"NSDictionary 转 NSData = %@",data);
-//    NSLog(@"NSData 转 NSDictionary =%@",dictionary);
-    
-    
-    
-//    NSData *data = [strM dataUsingEncoding:NSUTF8StringEncoding];
-//    NSString *host = @"255.255.255.255";//此处如果写成固定的IP就是对特定的server监测；我这种写法是为了多方监测
-    NSString *host = @"192.168.26.62";
+    NSString *host = ipHost;
 //    uint16_t port = 9527;//通过端口监测
     [sendUdpSocket sendData:data toHost:host port:port withTimeout:-1 tag:100];
 }
@@ -76,7 +66,7 @@ static UDPManage *myUDPManage = nil;
 //    NSData *data = [@"searchForConection" dataUsingEncoding:NSUTF8StringEncoding];
         NSString *host = @"255.255.255.255";//此处如果写成固定的IP就是对特定的server监测；我这种写法是为了多方监测
 //    NSString *host = @"192.168.26.62";
-        uint16_t port = 10528;//通过端口监测
+        uint16_t port = 9228;//通过端口监测
     [sendUdpSocket sendData:data toHost:host port:port withTimeout:-1 tag:100];
 }
 //6.相关的代理
@@ -97,11 +87,12 @@ static UDPManage *myUDPManage = nil;
     NSString *ip = [GCDAsyncUdpSocket hostFromAddress:address];
     uint16_t port = [GCDAsyncUdpSocket portFromAddress:address];
     NSString *s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    NSLog(@"sock：%@",sock);
-    // 继续来等待接收下一次消息
     if (_receiveBlock) {
         _receiveBlock(ip,port,s);
     }
+//    NSLog(@"sock：%@",sock);
+    // 继续来等待接收下一次消息
+    
     
     [sock receiveOnce:nil];
 //    此处根据实际和硬件商定的需求决定是否主动回一条消息

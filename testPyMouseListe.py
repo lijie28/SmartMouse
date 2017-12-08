@@ -98,12 +98,8 @@ def mouseMove(posx, posy, k):
 
     ourEvent = CGEventCreate(None);  
     currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
-    # print ,
-    # 
     nextX = (1+k) *(posx)+currentpos.x
     nextY = (1+k) *(posy)+ currentpos.y
-    # print nextX,nextY
-
     if (nextX>=0)&(nextY>=0):
         _mouseEvent(kCGEventMouseMoved,nextX, nextY)
     
@@ -119,9 +115,21 @@ def mouseLeftClickHere():
     currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
     mouseLeftClick(currentpos.x,currentpos.y)
       
+
+def mouseClickDownHere():  
+    ourEvent = CGEventCreate(None);  
+    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+    mouseClickDown(currentpos.x,currentpos.y)
+
 def mouseClickDown(posx, posy):  
     _mouseEvent(kCGEventLeftMouseDown, posx, posy)  
       
+
+def mouseClickUpHere():  
+    ourEvent = CGEventCreate(None);  
+    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+    mouseClickUp(currentpos.x,currentpos.y)
+
 def mouseClickUp(posx, posy):  
     _mouseEvent(kCGEventLeftMouseUp, posx, posy)  
       
@@ -133,17 +141,44 @@ def mouseClick(posx, posy):
     _mouseEvent(kCGEventLeftMouseDown, posx, posy)  
     _mouseEvent(kCGEventLeftMouseUp, posx, posy)  
       
+
+def mouseLeftClickUpHere():
+    ourEvent = CGEventCreate(None);  
+    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+    mouseLeftClickUp(currentpos.x,currentpos.y)
+
+def mouseLeftClickUp(posx, posy):  
+    theEvent = CGEventCreateMouseEvent(None, kCGEventLeftMouseDown, (posx,posy), kCGMouseButtonLeft)  
+    CGEventPost(kCGHIDEventTap, theEvent)  
+
+def mouseLeftClickDownHere():
+    ourEvent = CGEventCreate(None);  
+    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+    mouseLeftClickDown(currentpos.x,currentpos.y)
+      
+def mouseLeftClickDown(posx, posy):  
+    theEvent2 = CGEventCreateMouseEvent(None, kCGEventLeftMouseUp, (posx,posy), kCGMouseButtonLeft)  
+    CGEventPost(kCGHIDEventTap, theEvent2) 
+
+
 def mouseLeftClick(posx, posy):  
     theEvent = CGEventCreateMouseEvent(None, kCGEventLeftMouseDown, (posx,posy), kCGMouseButtonLeft)  
     CGEventPost(kCGHIDEventTap, theEvent)  
     theEvent2 = CGEventCreateMouseEvent(None, kCGEventLeftMouseUp, (posx,posy), kCGMouseButtonLeft)  
     CGEventPost(kCGHIDEventTap, theEvent2) 
 
+
+def mouseRightClickHere():  
+    ourEvent = CGEventCreate(None);  
+    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+    mouseRightClick(currentpos.x,currentpos.y)
+
 def mouseRightClick(posx, posy):  
-    theEvent = CGEventCreateMouseEvent(None, kCGEventRightMouseDown, (posx,posy), kCGMouseButtonRight)  
-    CGEventPost(kCGHIDEventTap, theEvent)  
-    theEvent2 = CGEventCreateMouseEvent(None, kCGEventRightMouseUp, (posx,posy), kCGMouseButtonRight)  
-    CGEventPost(kCGHIDEventTap, theEvent2)  
+        theEvent = CGEventCreateMouseEvent(None, kCGEventRightMouseDown, (posx,posy), kCGMouseButtonRight)  
+        CGEventPost(kCGHIDEventTap, theEvent)  
+        theEvent2 = CGEventCreateMouseEvent(None, kCGEventRightMouseUp, (posx,posy), kCGMouseButtonRight)  
+        CGEventPost(kCGHIDEventTap, theEvent2)  
+
   
 def mouseDoubleClick(posx, posy):  
     '''''perfrom a double left click'''  
