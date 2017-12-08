@@ -68,6 +68,7 @@ int count;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     NSLog(@"点击了确认");
+    [self confirmInputText];
     [self cleanText];
     return YES;
 }
@@ -96,12 +97,19 @@ int count;
 
 - (void)cleanText
 {
-    
+    self.textInput.text = @"";
 }
 
 - (void)confirmInputText
 {
-    self.textInput.text = @"";
+    if (!_dicNet) return;
+    if (!self.textInput.text||[self.textInput.text isEqualToString:@""])return;
+    NSLog(@"双击");
+    NSDictionary *dic =
+    @{@"action":@"keyboardInput",
+      @"value":self.textInput.text
+      };
+    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
 }
 
 - (void)startInputText

@@ -9,8 +9,8 @@ import sys
 import time  
 from Quartz.CoreGraphics import *    
 import pyautogui
-from pykeyboard import PyKeyboard
-import pyperclip
+# from pykeyboard import PyKeyboard
+# import pyperclip
 # import os
 # import pyautogui as pag
 

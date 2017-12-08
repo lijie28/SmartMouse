@@ -45,7 +45,7 @@ class UdpServer(object):
                 MouseCtrl.mouseRightClickHere()
             elif data['action'] == 'keyboardInput':
                 print 'keyboardInput'
-                MouseCtrl.mouseRightClickHere()
+                MouseCtrl.keyboardInput(data['value'])
 
 
             elif data['action'] == 'searchForConection':
