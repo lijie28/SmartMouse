@@ -8,10 +8,14 @@ Created on 2013-8-30
 import sys  
 import time  
 from Quartz.CoreGraphics import *    
-
+import pyautogui
+from pykeyboard import PyKeyboard
+import pyperclip
 # import os
 # import pyautogui as pag
 
+reload(sys)
+sys.setdefaultencoding('utf-8')
 # enum {
 #   kVK_ANSI_A                    = 0x00,
 #   kVK_ANSI_S                    = 0x01,
@@ -79,10 +83,13 @@ from Quartz.CoreGraphics import *
 #   kVK_ANSI_Keypad8              = 0x5B,
 #   kVK_ANSI_Keypad9              = 0x5C
 
-
-def _keyBoardEvent():
-    print '_keyBoardEvent'
-    push = CGEventCreateKeyboardEvent(None, 0x1F, True)
+def keyboardInput(str):
+    pyperclip.copy(str)
+    _keyBoardEventPaste()
+def _keyBoardEventPaste():
+    print '_keyBoardEventPaste'
+    push = CGEventCreateKeyboardEvent(None, 0x09, True)
+    CGEventSetFlags(push, kCGEventFlagMaskCommand);
     CGEventPost(kCGHIDEventTap, push)
     # CFRelease(push)
 
@@ -214,6 +221,13 @@ if __name__ == '__main__':
     ourEvent = CGEventCreate(None);  
     currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
     print currentpos.x,currentpos.y
+
+    keyboardInput('测试')
+    # pyautogui.typewrite('哈哈')
+    # k = PyKeyboard()
+    # pyperclip.copy("哈哈测试")
+    # # pyperclip.paste()
+    # _keyBoardEventPaste()
     # time.sleep(1);  
     # # mouseMove
     
