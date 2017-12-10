@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *inputText;
 @property (weak, nonatomic) IBOutlet UIButton *closeKB;
 @property (weak, nonatomic) IBOutlet UITextField *textInput;
+@property (weak, nonatomic) IBOutlet UIView *subFuncView;
 
 @property (strong, nonatomic)NSDictionary *dicNet;
 
@@ -90,6 +91,7 @@ int count;
 }
 - (void)check
 {
+    self.subFuncView.hidden = !self.subFuncView.hidden;
     self.showName.text = @"check";
     [[UDPManage shareUDPManage]checkAset];
 }
