@@ -12,7 +12,7 @@
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 
-@interface ViewController () <UITextFieldDelegate>
+@interface ViewController () <UITextFieldDelegate,UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *viewTouch;
 //@property (strong, nonatomic)UIView *touchBg;
 //@property (strong, nonatomic)UILabel *showLog;
@@ -29,10 +29,43 @@
 @property (weak, nonatomic) IBOutlet UIView *subFuncView;
 
 @property (strong, nonatomic)NSDictionary *dicNet;
+@property (weak, nonatomic) IBOutlet UICollectionView *subFunc;
 
 @end
 int count;
 @implementation ViewController
+
+
+#pragma mark - uicollectionView 代理事件
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewID" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor yellowColor];
+    return cell;
+}
+
+
+//section个数
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+//item个数
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return 5;
+    
+}
+
+////设置点击 Cell的点击事件
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"1");
+    
+}
 
 
 - (void)viewDidLoad {
@@ -62,6 +95,21 @@ int count;
     self.imageV.hidden = NO;
     self.textInput.delegate = self;
     [self addGesture];
+    
+    
+    self.subFunc.delegate = self;
+    self.subFunc.dataSource = self;
+    
+    UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    layout.itemSize = CGSizeMake((170)/2, (250)/2);
+    layout.minimumLineSpacing = (14)/2;
+    layout.minimumInteritemSpacing = (14)/2;
+    layout.sectionInset = UIEdgeInsetsMake(0 , 0,  0 , 0);
+//    self.subFunc.collectionViewLayout =layout;
+    //注册item类型
+    [self.subFunc registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"collectionViewID"];
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -141,24 +189,24 @@ int count;
 - (void)leftLongClick
 {
     if (!_dicNet) return;
-//    NSDictionary *dic = nil;
+    NSDictionary *dic = nil;
     if (self.leftBtn.tag == 0) {
         NSLog(@"按下");
         self.leftBtn.tag = 1;
-//        dic =
-//        @{@"action":@"leftClickDown",
-//          };
+        dic =
+        @{@"action":@"leftClickDown",
+          };
         self.leftBtn.backgroundColor = [UIColor grayColor];
     }else{
         NSLog(@"松起");
         self.leftBtn.tag = 0;
-//        dic =
-//        @{@"action":@"leftClickUp",
-//          };
+        dic =
+        @{@"action":@"leftClickUp",
+          };
         self.leftBtn.backgroundColor = [UIColor lightGrayColor];
     }
     
-//    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
+    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
 }
 
 - (void)rightClick
@@ -258,6 +306,7 @@ int count;
                      },
           };
     }
+    
     [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
 }
 

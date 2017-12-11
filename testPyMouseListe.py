@@ -93,6 +93,11 @@ def _keyBoardEventPaste():
     CGEventPost(kCGHIDEventTap, push)
     # CFRelease(push)
 
+def keyBoardEventType(key):
+    # print '_keyBoardEventType'
+    push = CGEventCreateKeyboardEvent(None, key, True)
+    # CGEventSetFlags(push, kCGEventFlagMaskCommand);
+    CGEventPost(kCGHIDEventTap, push)
 
 def _mouseEvent(type, posx, posy):  
     theEvent = CGEventCreateMouseEvent(None, type, (posx,posy), kCGMouseButtonLeft)  
@@ -168,7 +173,7 @@ def mouseLeftClickUpHere():
     mouseLeftClickUp(currentpos.x,currentpos.y)
 
 def mouseLeftClickUp(posx, posy):  
-    theEvent = CGEventCreateMouseEvent(None, kCGEventLeftMouseDown, (posx,posy), kCGMouseButtonLeft)  
+    theEvent = CGEventCreateMouseEvent(None,kCGEventLeftMouseUp , (posx,posy), kCGMouseButtonLeft)  
     CGEventPost(kCGHIDEventTap, theEvent)  
 
 def mouseLeftClickDownHere():
@@ -177,7 +182,7 @@ def mouseLeftClickDownHere():
     mouseLeftClickDown(currentpos.x,currentpos.y)
       
 def mouseLeftClickDown(posx, posy):  
-    theEvent2 = CGEventCreateMouseEvent(None, kCGEventLeftMouseUp, (posx,posy), kCGMouseButtonLeft)  
+    theEvent2 = CGEventCreateMouseEvent(None, kCGEventLeftMouseDown, (posx,posy), kCGMouseButtonLeft)  
     CGEventPost(kCGHIDEventTap, theEvent2) 
 
 
