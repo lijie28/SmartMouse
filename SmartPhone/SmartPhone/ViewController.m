@@ -141,24 +141,24 @@ int count;
 - (void)leftLongClick
 {
     if (!_dicNet) return;
-    NSDictionary *dic = nil;
+//    NSDictionary *dic = nil;
     if (self.leftBtn.tag == 0) {
         NSLog(@"按下");
         self.leftBtn.tag = 1;
-        dic =
-        @{@"action":@"leftClickDown",
-          };
+//        dic =
+//        @{@"action":@"leftClickDown",
+//          };
         self.leftBtn.backgroundColor = [UIColor grayColor];
     }else{
         NSLog(@"松起");
         self.leftBtn.tag = 0;
-        dic =
-        @{@"action":@"leftClickUp",
-          };
+//        dic =
+//        @{@"action":@"leftClickUp",
+//          };
         self.leftBtn.backgroundColor = [UIColor lightGrayColor];
     }
     
-    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
+//    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
 }
 
 - (void)rightClick
@@ -209,14 +209,6 @@ int count;
     
     if (!_dicNet) return;
     UITouch *touch = [touches anyObject];
-//    if (touch.view != self.viewTouch) return;
-//    NSLog(@"手指数：%lu",(unsigned long)touch.tapCount);
-    /*
-     - (CGPoint)locationInView:(nullableUIView *)view;//现在触摸的坐标
-     - (CGPoint)previousLocationInView:(nullableUIView *)view;//上一次触摸的坐标
-     - (CGPoint)preciseLocationInView:(nullableUIView *)view NS_AVAILABLE_IOS(9_1);//现在触摸的精确的坐标
-     - (CGPoint)precisePreviousLocationInView:(nullableUIView *)view NS_AVAILABLE_IOS(9_1);//上一次触摸的精确的坐标
-     */
     //取得当前位置
     CGPoint current=[touch preciseLocationInView:self.view];//
     //取得前一个位置
@@ -228,14 +220,8 @@ int count;
     CGPoint offset=CGPointMake(current.x-previous.x, current.y-previous.y);
     if (offset.x == 0&&offset.y == 0) return;
     
-//    NSLog(@"X:%f Y:%f",offset.x,offset.y);
-    
-    
-    
     //重新设置新位置
     _imageV.center=CGPointMake(center.x+offset.x, center.y+offset.y);
-    
-    
     
     //速度算法（比较随便 要优化）
     CGFloat s = 0.0;
@@ -258,12 +244,20 @@ int count;
         k = (v-1000)/1000;
     }
     
-    
-    NSDictionary *dic =
-    @{@"action":@"mouseMove",
-      @"value":@{@"x":@(offset.x),@"y":@(offset.y),@"k":@(k)
-                 },
-      };
+    NSDictionary *dic = nil;
+    if (self.leftBtn.tag == 0) {
+        dic =
+        @{@"action":@"mouseMove",
+          @"value":@{@"x":@(offset.x),@"y":@(offset.y),@"k":@(k)
+                     },
+          };
+    }else if (self.leftBtn.tag == 1){
+        dic =
+        @{@"action":@"mousePressMove",
+          @"value":@{@"x":@(offset.x),@"y":@(offset.y),@"k":@(k)
+                     },
+          };
+    }
     [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
 }
 

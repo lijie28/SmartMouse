@@ -101,6 +101,18 @@ def _mouseEvent(type, posx, posy):
 def mouseMoveTo(posx, posy):  
     _mouseEvent(kCGEventMouseMoved, posx, posy)  
 
+def mousePressMove(posx, posy, k):  
+    print 'mousePressMove',posx,posy
+    ourEvent = CGEventCreate(None);  
+    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+    nextX = (1+k) *(posx)+currentpos.x
+    nextY = (1+k) *(posy)+ currentpos.y
+    if (nextX>=0)&(nextY>=0):
+        _mouseEvent(kCGEventLeftMouseDragged, nextX, nextY)
+        # _mouseEvent(kCGEventMouseMoved,nextX, nextY)
+
+
+
 def mouseMove(posx, posy, k):  
 
     ourEvent = CGEventCreate(None);  
@@ -108,6 +120,7 @@ def mouseMove(posx, posy, k):
     nextX = (1+k) *(posx)+currentpos.x
     nextY = (1+k) *(posy)+ currentpos.y
     if (nextX>=0)&(nextY>=0):
+        
         _mouseEvent(kCGEventMouseMoved,nextX, nextY)
     
         

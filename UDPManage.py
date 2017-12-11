@@ -34,18 +34,22 @@ class UdpServer(object):
             elif data['action'] == 'mouseSingleClick':
                 print 'single'
                 MouseCtrl.mouseLeftClickHere()
-            elif data['action'] == 'leftClickDown':
-                print 'leftClickDown'
-                MouseCtrl.mouseLeftClickDownHere()
-            elif data['action'] == 'leftClickUp':
-                print 'leftClickUp'
-                MouseCtrl.mouseLeftClickUpHere()
+            # elif data['action'] == 'leftClickDown':
+            #     print 'leftClickDown'
+            #     MouseCtrl.mouseLeftClickDownHere()
+            # elif data['action'] == 'leftClickUp':
+            #     print 'leftClickUp'
+            #     MouseCtrl.mouseLeftClickUpHere()
             elif data['action'] == 'rightClick':
                 print 'rightClick'
                 MouseCtrl.mouseRightClickHere()
             elif data['action'] == 'keyboardInput':
                 print 'keyboardInput'
                 MouseCtrl.keyboardInput(data['value'])
+            elif data['action'] == 'mousePressMove':
+                print data['value']
+                MouseCtrl.mousePressMove(data['value']['x'],data['value']['y'],data['value']['k'])
+
 
 
             elif data['action'] == 'searchForConection':
