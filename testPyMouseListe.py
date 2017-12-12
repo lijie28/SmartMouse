@@ -85,18 +85,25 @@ sys.setdefaultencoding('utf-8')
 
 def keyboardInput(str):
     pyperclip.copy(str)
-    _keyBoardEventPaste()
-def _keyBoardEventPaste():
-    print '_keyBoardEventPaste'
-    push = CGEventCreateKeyboardEvent(None, 0x09, True)
+    keyBoardEventCommandType(0x09)
+
+# def _keyBoardEventPaste():
+#     push = CGEventCreateKeyboardEvent(None, 0x09, True)
+#     CGEventSetFlags(push, kCGEventFlagMaskCommand);
+#     CGEventPost(kCGHIDEventTap, push)
+
+# def _keyBoardEventCopy():
+#     push = CGEventCreateKeyboardEvent(None, 0x08, True)
+#     CGEventSetFlags(push, kCGEventFlagMaskCommand);
+#     CGEventPost(kCGHIDEventTap, push)
+
+def keyBoardEventCommandType(key):
+    push = CGEventCreateKeyboardEvent(None, key, True)
     CGEventSetFlags(push, kCGEventFlagMaskCommand);
     CGEventPost(kCGHIDEventTap, push)
-    # CFRelease(push)
 
 def keyBoardEventType(key):
-    # print '_keyBoardEventType'
     push = CGEventCreateKeyboardEvent(None, key, True)
-    # CGEventSetFlags(push, kCGEventFlagMaskCommand);
     CGEventPost(kCGHIDEventTap, push)
 
 def _mouseEvent(type, posx, posy):  

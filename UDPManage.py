@@ -50,9 +50,22 @@ class UdpServer(object):
                 print data['value']
                 MouseCtrl.mousePressMove(data['value']['x'],data['value']['y'],data['value']['k'])
             elif data['action'] == 'keyboardType':
-                print 'keyboardType'
+                print 'keyboardType',data['value']
                 MouseCtrl.keyBoardEventType(data['value'])
+            elif data['action'] == 'keyboardCommandType':
+                print 'keyboardCommandType',data['value']
+                MouseCtrl.keyBoardEventCommandType(data['value'])
 
+            # elif data['action'] == 'paste':
+            #     print 'paste'
+            #     MouseCtrl._keyBoardEventPaste()
+            # elif data['action'] == 'copy':
+            #     print 'copy'
+            #     MouseCtrl._keyBoardEventCopy()
+            # elif data['action'] == 'shear':
+            #     print 'shear'
+            #     MouseCtrl._keyBoardEventShear()
+                
 
 
             elif data['action'] == 'searchForConection':

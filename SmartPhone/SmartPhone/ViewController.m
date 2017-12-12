@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "UDPManage.h"
-
+#import "SubCollectionViewCell.h"
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 
@@ -31,21 +31,23 @@
 @property (strong, nonatomic)NSDictionary *dicNet;
 @property (weak, nonatomic) IBOutlet UICollectionView *subFunc;
 
+
 @end
 int count;
 @implementation ViewController
+
+#define arrTitle @[@"回车",@"删除",@"空格",@"复制",@"粘贴",@"剪切",@"撤消"]
 
 
 #pragma mark - uicollectionView 代理事件
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewID" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
+    SubCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewID" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor lightGrayColor];
+    cell.text = arrTitle[indexPath.row];
     return cell;
 }
-
 
 //section个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -56,17 +58,34 @@ int count;
 //item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 5;
+    return arrTitle.count;
     
 }
 
 ////设置点击 Cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"1");
+    NSLog(@"%ld",(long)indexPath.row);
+    if ([arrTitle[indexPath.row] isEqualToString:@"回车"]) {
+        [self keyboardType:kVK_ANSI_KeypadEnter];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"删除"]){
+        [self keyboardType:kVK_Delete];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"空格"]){
+        [self keyboardType:kVK_Space];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"复制"]){
+        [self keyboardCommandType:kVK_ANSI_C];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"粘贴"]){
+        [self keyboardCommandType:kVK_ANSI_V];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"剪切"]){
+        [self keyboardCommandType:kVK_ANSI_X];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"撤消"]){
+        [self keyboardCommandType:kVK_ANSI_Z];
+    }
     
+
 }
 
+#pragma mark - circle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -97,18 +116,9 @@ int count;
     [self addGesture];
     
     
+    [self.subFunc registerClass:[SubCollectionViewCell class] forCellWithReuseIdentifier:@"collectionViewID"];
     self.subFunc.delegate = self;
     self.subFunc.dataSource = self;
-    
-    UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.itemSize = CGSizeMake((170)/2, (250)/2);
-    layout.minimumLineSpacing = (14)/2;
-    layout.minimumInteritemSpacing = (14)/2;
-    layout.sectionInset = UIEdgeInsetsMake(0 , 0,  0 , 0);
-//    self.subFunc.collectionViewLayout =layout;
-    //注册item类型
-    [self.subFunc registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"collectionViewID"];
     
 }
 
@@ -183,11 +193,36 @@ int count;
     [_viewTouch addGestureRecognizer:doubleTapGestureRecognizer];
 }
 
+#pragma mark - kb部分
+- (void)doAction:(NSString *)actName
+{
+    if (!_dicNet) return;
+    NSDictionary *dic = @{@"action":actName,
+                          };
+    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
+}
+- (void)keyboardType:(int)type
+{
+    if (!_dicNet) return;
+    NSDictionary *dic = @{@"action":@"keyboardType",
+                          @"value":@(type),
+                          };
+    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
+}
+- (void)keyboardCommandType:(int)type
+{
+    if (!_dicNet) return;
+    NSDictionary *dic = @{@"action":@"keyboardCommandType",
+                          @"value":@(type),
+                          };
+    [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
+}
 
 #pragma mark - 手势部分
 
 - (void)leftLongClick
 {
+    self.subFuncView.hidden = YES;
     if (!_dicNet) return;
     NSDictionary *dic = nil;
     if (self.leftBtn.tag == 0) {
@@ -211,7 +246,7 @@ int count;
 
 - (void)rightClick
 {
-    
+    self.subFuncView.hidden = YES;
     if (!_dicNet) return;
     NSLog(@"右击");
     NSDictionary *dic =
@@ -222,6 +257,7 @@ int count;
 
 - (void)singleTap:(UITapGestureRecognizer *)singleTap
 {
+    self.subFuncView.hidden = YES;
     if (!_dicNet) return;
     NSLog(@"单击");
     NSDictionary *dic =
@@ -231,6 +267,7 @@ int count;
 }
 - (void)doubleTap:(UITapGestureRecognizer *)doubleTap
 {
+    self.subFuncView.hidden = YES;
     if (!_dicNet) return;
     NSLog(@"双击");
     NSDictionary *dic =
@@ -254,7 +291,7 @@ int count;
 
 //#pragma mark--touch移动中
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
+    self.subFuncView.hidden = YES;
     if (!_dicNet) return;
     UITouch *touch = [touches anyObject];
     //取得当前位置

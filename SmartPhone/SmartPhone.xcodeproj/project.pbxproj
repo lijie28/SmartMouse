@@ -15,6 +15,7 @@
 		04AC3A5B1FCF096300102DA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AC3A591FCF096300102DA6 /* LaunchScreen.storyboard */; };
 		04AC3A661FCF096300102DA6 /* SmartPhoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AC3A651FCF096300102DA6 /* SmartPhoneTests.m */; };
 		04AC3A711FCF096300102DA6 /* SmartPhoneUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AC3A701FCF096300102DA6 /* SmartPhoneUITests.m */; };
+		6A02FFB61FDFB6B9003C38E2 /* SubCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A02FFB51FDFB6B9003C38E2 /* SubCollectionViewCell.m */; };
 		6A85D7E61FCFADE8003E4BEB /* UDPManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A85D7E51FCFADE8003E4BEB /* UDPManage.m */; };
 		6A85D7E91FCFAF1B003E4BEB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A85D7E81FCFAEDE003E4BEB /* CFNetwork.framework */; };
 		8915E1FF29FF0237FAE1F5A2 /* libPods-SmartPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 971E7E9091422A62659FF327 /* libPods-SmartPhone.a */; };
@@ -55,6 +56,8 @@
 		04AC3A701FCF096300102DA6 /* SmartPhoneUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartPhoneUITests.m; sourceTree = "<group>"; };
 		04AC3A721FCF096300102DA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EF3C3B62FD8286FE907B907 /* Pods-SmartPhone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPhone.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPhone/Pods-SmartPhone.release.xcconfig"; sourceTree = "<group>"; };
+		6A02FFB41FDFB6B9003C38E2 /* SubCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubCollectionViewCell.h; sourceTree = "<group>"; };
+		6A02FFB51FDFB6B9003C38E2 /* SubCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubCollectionViewCell.m; sourceTree = "<group>"; };
 		6A85D7E41FCFADE8003E4BEB /* UDPManage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDPManage.h; sourceTree = "<group>"; };
 		6A85D7E51FCFADE8003E4BEB /* UDPManage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UDPManage.m; sourceTree = "<group>"; };
 		6A85D7E81FCFAEDE003E4BEB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -114,6 +117,8 @@
 		04AC3A4A1FCF096200102DA6 /* SmartPhone */ = {
 			isa = PBXGroup;
 			children = (
+				6A02FFB41FDFB6B9003C38E2 /* SubCollectionViewCell.h */,
+				6A02FFB51FDFB6B9003C38E2 /* SubCollectionViewCell.m */,
 				04AC3A4E1FCF096200102DA6 /* AppDelegate.h */,
 				04AC3A4F1FCF096200102DA6 /* AppDelegate.m */,
 				04AC3A511FCF096200102DA6 /* ViewController.h */,
@@ -364,6 +369,7 @@
 				6A85D7E61FCFADE8003E4BEB /* UDPManage.m in Sources */,
 				04AC3A531FCF096200102DA6 /* ViewController.m in Sources */,
 				04AC3A501FCF096200102DA6 /* AppDelegate.m in Sources */,
+				6A02FFB61FDFB6B9003C38E2 /* SubCollectionViewCell.m in Sources */,
 				04AC3A4D1FCF096200102DA6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
