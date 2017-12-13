@@ -191,6 +191,8 @@ int count;
     UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTap:)];
     [doubleTapGestureRecognizer setNumberOfTapsRequired:2];
     [_viewTouch addGestureRecognizer:doubleTapGestureRecognizer];
+    
+    _viewTouch.multipleTouchEnabled = YES;
 }
 
 #pragma mark - kb部分
@@ -280,6 +282,8 @@ int count;
 #pragma mark - touch开始的时候
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
+    
+    NSLog(@"开始有%lu个手指",(unsigned long)touches.allObjects.count);
     UITouch *touch=[touches anyObject];
 //    if (touch.view != self.touchBg) return;
     
@@ -291,8 +295,10 @@ int count;
 
 //#pragma mark--touch移动中
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    NSLog(@"有%lu个手指",(unsigned long)touches.allObjects.count);
     self.subFuncView.hidden = YES;
     if (!_dicNet) return;
+    
     UITouch *touch = [touches anyObject];
     //取得当前位置
     CGPoint current=[touch preciseLocationInView:self.view];//
@@ -330,21 +336,31 @@ int count;
     }
     
     NSDictionary *dic = nil;
-    if (self.leftBtn.tag == 0) {
+    if (touches.allObjects.count == 2) {
+        
         dic =
-        @{@"action":@"mouseMove",
-          @"value":@{@"x":@(offset.x),@"y":@(offset.y),@"k":@(k)
-                     },
+        @{@"action":@"mouseScroll",
+          @"value":@(-offset.y),
           };
-    }else if (self.leftBtn.tag == 1){
-        dic =
-        @{@"action":@"mousePressMove",
-          @"value":@{@"x":@(offset.x),@"y":@(offset.y),@"k":@(k)
-                     },
-          };
+        
+    }else{
+        if (self.leftBtn.tag == 0) {
+            dic =
+            @{@"action":@"mouseMove",
+              @"value":@{@"x":@(offset.x),@"y":@(offset.y),@"k":@(k)
+                         },
+              };
+        }else if (self.leftBtn.tag == 1){
+            dic =
+            @{@"action":@"mousePressMove",
+              @"value":@{@"x":@(offset.x),@"y":@(offset.y),@"k":@(k)
+                         },
+              };
+        }
     }
-    
     [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
+    
+    //NSLog(@"有%lu个手指，%@",(unsigned long)touches.allObjects.count,dic);
 }
 
 
@@ -352,6 +368,7 @@ int count;
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     UITouch *touch=[touches anyObject];
     
+    NSLog(@"结束有%lu个手指",(unsigned long)touch.tapCount);
     //取得当前位置
     CGPoint current=[touch locationInView:self.view];
     //取得前一个位置
@@ -400,11 +417,6 @@ int count;
 - (BOOL)shouldAutorotate{
     return NO;
 }
-
-//- (NSUInteger)supportedInterfaceOrientations﻿{
-//    return UIInterfaceOrientationMaskPortrait;
-//}
-
 
 
 #pragma mark - lazy init

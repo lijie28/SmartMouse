@@ -55,6 +55,9 @@ class UdpServer(object):
             elif data['action'] == 'keyboardCommandType':
                 print 'keyboardCommandType',data['value']
                 MouseCtrl.keyBoardEventCommandType(data['value'])
+            elif data['action'] == 'mouseScroll':
+                print 'mouseScroll',data['value']
+                MouseCtrl.mouseScroll(data['value'])
 
             # elif data['action'] == 'paste':
             #     print 'paste'
