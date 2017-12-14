@@ -101,12 +101,6 @@
                                     <constraint firstAttribute="bottom" secondItem="mHf-kY-b59" secondAttribute="bottom" constant="30" id="qfP-Gr-g6b"/>
                                 </constraints>
                             </view>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="text input" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="spB-rd-vlZ">
-                                <rect key="frame" x="36" y="323" width="303" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wap-Oy-Aqd" userLabel="left">
                                 <rect key="frame" x="0.0" y="686" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -131,6 +125,14 @@
                                     <constraint firstAttribute="height" constant="50" id="L7S-UN-4eA"/>
                                 </constraints>
                             </button>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="text input" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="spB-rd-vlZ">
+                                <rect key="frame" x="0.0" y="150" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="FTt-QE-lJB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -138,12 +140,15 @@
                             <constraint firstItem="Sd8-a0-tIz" firstAttribute="leading" secondItem="Wap-Oy-Aqd" secondAttribute="trailing" id="4O7-Oh-MwK"/>
                             <constraint firstItem="Wap-Oy-Aqd" firstAttribute="firstBaseline" secondItem="wGs-R6-hJ0" secondAttribute="firstBaseline" id="5GK-XD-M79"/>
                             <constraint firstItem="K27-qd-6V2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="5vH-Zc-iMO"/>
+                            <constraint firstItem="spB-rd-vlZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DW4-lj-5WJ"/>
                             <constraint firstItem="Wap-Oy-Aqd" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="ENm-wU-cbC"/>
                             <constraint firstItem="wGs-R6-hJ0" firstAttribute="leading" secondItem="Sd8-a0-tIz" secondAttribute="trailing" id="Ipy-CY-d7B"/>
                             <constraint firstItem="ngt-ia-ZKG" firstAttribute="top" secondItem="K27-qd-6V2" secondAttribute="bottom" id="PUT-Ec-F4j"/>
                             <constraint firstItem="Wap-Oy-Aqd" firstAttribute="baseline" secondItem="wGs-R6-hJ0" secondAttribute="baseline" id="SEN-PH-lwC"/>
                             <constraint firstItem="Wap-Oy-Aqd" firstAttribute="leading" secondItem="Nab-Fw-LhX" secondAttribute="leading" id="T1C-dC-8LT"/>
+                            <constraint firstAttribute="trailing" secondItem="spB-rd-vlZ" secondAttribute="trailing" id="TTh-bf-vfX"/>
                             <constraint firstItem="Sd8-a0-tIz" firstAttribute="leading" secondItem="Wap-Oy-Aqd" secondAttribute="trailing" id="TV2-Mx-PnS"/>
+                            <constraint firstItem="spB-rd-vlZ" firstAttribute="top" secondItem="K27-qd-6V2" secondAttribute="bottom" constant="100" id="VjD-i6-D9L"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Sd8-a0-tIz" secondAttribute="bottom" id="YpL-80-2Wa"/>
                             <constraint firstItem="Sd8-a0-tIz" firstAttribute="top" secondItem="Nab-Fw-LhX" secondAttribute="bottom" constant="1" id="YuF-BP-EKA"/>
                             <constraint firstAttribute="trailing" secondItem="Nab-Fw-LhX" secondAttribute="trailing" id="avW-Kl-MSU"/>

@@ -26,7 +26,6 @@ class UdpServer(object):
                 print data['value']
                 MouseCtrl.mouseMove(data['value']['x'],data['value']['y'],data['value']['k'])
 
-
             elif data['action'] == 'mouseDoubleClick':
                 print 'double'
                 MouseCtrl.mouseDoubleClickHere()
@@ -58,18 +57,6 @@ class UdpServer(object):
             elif data['action'] == 'mouseScroll':
                 print 'mouseScroll',data['value']
                 MouseCtrl.mouseScroll(data['value'])
-
-            # elif data['action'] == 'paste':
-            #     print 'paste'
-            #     MouseCtrl._keyBoardEventPaste()
-            # elif data['action'] == 'copy':
-            #     print 'copy'
-            #     MouseCtrl._keyBoardEventCopy()
-            # elif data['action'] == 'shear':
-            #     print 'shear'
-            #     MouseCtrl._keyBoardEventShear()
-                
-
 
             elif data['action'] == 'searchForConection':
                 # mes = "收到 %d" % count

@@ -375,7 +375,7 @@ int count;
     
     //移动前的中点位置
     //    CGPoint center=imageV.center;
-    //移动偏移量
+    //移动偏移量0
     CGPoint offset=CGPointMake(current.x, current.y);
     
 //    NSLog(@"X:%f Y:%f",offset.x,offset.y);
@@ -409,14 +409,6 @@ int count;
     }
 }
 
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
-    return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (BOOL)shouldAutorotate{
-    return NO;
-}
 
 
 #pragma mark - lazy init
