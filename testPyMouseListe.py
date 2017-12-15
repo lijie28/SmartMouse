@@ -17,20 +17,10 @@ def keyboardInput(str):
     pyperclip.copy(str)
     keyBoardEventCommandType(0x09)
 
-# def _keyBoardEventPaste():
-#     push = CGEventCreateKeyboardEvent(None, 0x09, True)
-#     CGEventSetFlags(push, kCGEventFlagMaskCommand);
-#     CGEventPost(kCGHIDEventTap, push)
-
-# def _keyBoardEventCopy():
-#     push = CGEventCreateKeyboardEvent(None, 0x08, True)
-#     CGEventSetFlags(push, kCGEventFlagMaskCommand);
-#     CGEventPost(kCGHIDEventTap, push)
-
 def keyBoardEventCommandType(key):
     push = CGEventCreateKeyboardEvent(None, key, True)
     CGEventSetFlags(push, kCGEventFlagMaskCommand);
-    CGEventPost(kCGHIDEventTap, push)
+    CGEventPost(kCGSessionEventTap, push)
 
 def keyBoardEventType(key):
     push = CGEventCreateKeyboardEvent(None, key, True)

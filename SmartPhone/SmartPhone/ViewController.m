@@ -30,13 +30,17 @@
 
 @property (strong, nonatomic)NSDictionary *dicNet;
 @property (weak, nonatomic) IBOutlet UICollectionView *subFunc;
+@property (weak, nonatomic) IBOutlet UIButton *left;
+@property (weak, nonatomic) IBOutlet UIButton *down;
+@property (weak, nonatomic) IBOutlet UIButton *right;
+@property (weak, nonatomic) IBOutlet UIButton *up;
 
 
 @end
 int count;
 @implementation ViewController
 
-#define arrTitle @[@"回车",@"删除",@"空格",@"复制",@"粘贴",@"剪切",@"撤消"]
+#define arrTitle @[@"回车",@"删除",@"空格",@"Tab",@"Esc",@"搜索",@"复制",@"粘贴",@"剪切",@"撤消",@"F1",@"F2",@"F3",@"F4",@"F5",@"F6",@"F7",@"F8",@"F9",@"F10",@"F11",@"F12"]
 
 
 #pragma mark - uicollectionView 代理事件
@@ -65,7 +69,7 @@ int count;
 ////设置点击 Cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%ld",(long)indexPath.row);
+    NSLog(@"%ld,%@",(long)indexPath.row,arrTitle[indexPath.row]);
     if ([arrTitle[indexPath.row] isEqualToString:@"回车"]) {
         [self keyboardType:kVK_ANSI_KeypadEnter];
     }else if ([arrTitle[indexPath.row] isEqualToString:@"删除"]){
@@ -80,6 +84,34 @@ int count;
         [self keyboardCommandType:kVK_ANSI_X];
     }else if ([arrTitle[indexPath.row] isEqualToString:@"撤消"]){
         [self keyboardCommandType:kVK_ANSI_Z];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F1"]){
+        [self keyboardType:kVK_F1];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F2"]){
+        [self keyboardType:kVK_F2];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F3"]){
+        [self keyboardType:kVK_F3];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F4"]){
+        [self keyboardType:kVK_F4];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F5"]){
+        [self keyboardType:kVK_F5];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F6"]){
+        [self keyboardType:kVK_F6];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F7"]){
+        [self keyboardType:kVK_F7];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F8"]){
+        [self keyboardType:kVK_F8];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F9"]){
+        [self keyboardType:kVK_F9];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F10"]){
+        [self keyboardType:kVK_F10];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F11"]){
+        [self keyboardType:kVK_F11];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"F12"]){
+        [self keyboardType:kVK_F12];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"搜索"]){
+        [self keyboardCommandType:kVK_Space];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"Tab"]){
+        [self keyboardType:kVK_Tab];
     }
     
 
@@ -97,6 +129,13 @@ int count;
     [self.rightBtn addTarget:self action:@selector(rightClick) forControlEvents:UIControlEventTouchUpInside];
     [self.inputText addTarget:self action:@selector(startInputText) forControlEvents:UIControlEventTouchUpInside];
     [self.closeKB addTarget:self action:@selector(closeKeyboard) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.leftBtn addTarget:self action:@selector(pressDirection:) forControlEvents:UIControlEventTouchUpInside];
+    [self.up addTarget:self action:@selector(pressDirection:) forControlEvents:UIControlEventTouchUpInside];
+    [self.down addTarget:self action:@selector(pressDirection:) forControlEvents:UIControlEventTouchUpInside];
+    [self.left addTarget:self action:@selector(pressDirection:) forControlEvents:UIControlEventTouchUpInside];
+    [self.right addTarget:self action:@selector(pressDirection:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     [[UDPManage shareUDPManage]receiveBlock:^(NSString *ip, uint16_t port, id mes) {
         
@@ -220,6 +259,27 @@ int count;
     [[UDPManage shareUDPManage]sendMessage:dic ipHost:_dicNet[@"ip"] port:[_dicNet[@"port"]intValue]];
 }
 
+
+- (void)pressDirection:(UIButton *)btnDirection
+{
+    NSLog(@"方向：%@",btnDirection.restorationIdentifier);
+    
+    if ([btnDirection.restorationIdentifier isEqualToString:@"上"]) {
+        [self keyboardType:kVK_UpArrow];
+    }else if ([btnDirection.restorationIdentifier isEqualToString:@"下"]){
+        
+        [self keyboardType:kVK_DownArrow];
+    }else if ([btnDirection.restorationIdentifier isEqualToString:@"左"]){
+        
+        [self keyboardType:kVK_LeftArrow];
+    }else if ([btnDirection.restorationIdentifier isEqualToString:@"右"]){
+        
+        [self keyboardType:kVK_RightArrow];
+    }
+    
+    
+}
+
 #pragma mark - 手势部分
 
 - (void)leftLongClick
@@ -285,7 +345,7 @@ int count;
     
     NSLog(@"开始有%lu个手指",(unsigned long)touches.allObjects.count);
     UITouch *touch=[touches anyObject];
-//    if (touch.view != self.touchBg) return;
+    if (touch.view != self.viewTouch) return;
     
     CGPoint current=[touch locationInView:self.view];
     _imageV.center=CGPointMake(current.x, current.y);
@@ -298,8 +358,8 @@ int count;
 //    NSLog(@"有%lu个手指",(unsigned long)touches.allObjects.count);
     self.subFuncView.hidden = YES;
     if (!_dicNet) return;
-    
     UITouch *touch = [touches anyObject];
+    if (touch.view != self.viewTouch) return;
     //取得当前位置
     CGPoint current=[touch preciseLocationInView:self.view];//
     //取得前一个位置
