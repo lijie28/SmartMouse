@@ -13,6 +13,155 @@ import pyperclip
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+
+class MouseEvent(object):
+    """docstring for MouseEvent"""
+
+    def _mouseEvent(type, posx, posy):  
+        theEvent = CGEventCreateMouseEvent(None, type, (posx,posy), kCGMouseButtonLeft)  
+        CGEventPost(kCGHIDEventTap, theEvent)  
+
+    def getpos():
+        ourEvent = CGEventCreate(None);  
+        currentpos=CGEventGetLocation(ourEvent); # Save current mouse 
+        return currentpos.x,currentpos.y  |
+          
+    def move(posx, posy):  
+        _mouseEvent(kCGEventMouseMoved, posx, posy)  
+
+    def pressmove(posx, posy, k):  
+        print 'mousePressMove',posx,posy
+        ourEvent = CGEventCreate(None);  
+        currentpos=CGEventGetLocation(ourEvent); # Save current mouse 
+
+        nextX = (1+k) *(posx)+currentpos.x
+        nextY = (1+k) *(posy)+ currentpos.y
+        if (nextX>=0)&(nextY>=0):
+            _mouseEvent(kCGEventLeftMouseDragged, nextX, nextY)
+            # _mouseEvent(kCGEventMouseMoved,nextX, nextY)
+
+
+
+    def mouseMove(posx, posy, k):  
+
+        ourEvent = CGEventCreate(None);  
+        currentpos=CGEventGetLocation(ourEvent); # Save current mouse 
+
+        nextX = (1+k) *(posx)+currentpos.x
+        nextY = (1+k) *(posy)+ currentpos.y
+        if (nextX>=0)&(nextY>=0):
+            
+            _mouseEvent(kCGEventMouseMoved,nextX, nextY)
+        
+    def click(clickType):
+        if clickType = '':
+            pass
+
+
+    def mouseDoubleClickHere():
+        mouseDoubleClick(_getpos())
+
+
+    def mouseLeftClickHere():
+        ourEvent = CGEventCreate(None);  
+        currentpos=CGEventGetLocation(ourEvent); # Save current mouse 
+        mouseLeftClick(currentpos.x,currentpos.y)
+        
+
+    def mouseClickDownHere():  
+        ourEvent = CGEventCreate(None);  
+        currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+        mouseClickDown(currentpos.x,currentpos.y)
+
+    def mouseClickDown(posx, posy):  
+        _mouseEvent(kCGEventLeftMouseDown, posx, posy)  
+          
+
+    def mouseClickUpHere():  
+        ourEvent = CGEventCreate(None);  
+        currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+        mouseClickUp(currentpos.x,currentpos.y)
+
+    def mouseClickUp(posx, posy):  
+        _mouseEvent(kCGEventLeftMouseUp, posx, posy)  
+          
+    def mouseDrag(posx, posy):  
+        _mouseEvent(kCGEventLeftMouseDragged, posx, posy)  
+          
+    def mouseClick(posx, posy):  
+        '''''perform a left click'''  
+        _mouseEvent(kCGEventLeftMouseDown, posx, posy)  
+        _mouseEvent(kCGEventLeftMouseUp, posx, posy)  
+          
+
+    def mouseLeftClickUpHere():
+        ourEvent = CGEventCreate(None);  
+        currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+        mouseLeftClickUp(currentpos.x,currentpos.y)
+
+    def mouseLeftClickUp(posx, posy):  
+        theEvent = CGEventCreateMouseEvent(None,kCGEventLeftMouseUp , (posx,posy), kCGMouseButtonLeft)  
+        CGEventPost(kCGHIDEventTap, theEvent)  
+
+    def mouseLeftClickDownHere():
+        ourEvent = CGEventCreate(None);  
+        currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+        mouseLeftClickDown(currentpos.x,currentpos.y)
+          
+    def mouseLeftClickDown(posx, posy):  
+        theEvent2 = CGEventCreateMouseEvent(None, kCGEventLeftMouseDown, (posx,posy), kCGMouseButtonLeft)  
+        CGEventPost(kCGHIDEventTap, theEvent2) 
+
+
+    def mouseLeftClick(posx, posy):  
+        theEvent = CGEventCreateMouseEvent(None, kCGEventLeftMouseDown, (posx,posy), kCGMouseButtonLeft)  
+        CGEventPost(kCGHIDEventTap, theEvent)  
+        theEvent2 = CGEventCreateMouseEvent(None, kCGEventLeftMouseUp, (posx,posy), kCGMouseButtonLeft)  
+        CGEventPost(kCGHIDEventTap, theEvent2) 
+
+
+    def mouseRightClickHere():  
+        ourEvent = CGEventCreate(None);  
+        currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
+        mouseRightClick(currentpos.x,currentpos.y)
+
+    def mouseRightClick(posx, posy):  
+            theEvent = CGEventCreateMouseEvent(None, kCGEventRightMouseDown, (posx,posy), kCGMouseButtonRight)  
+            CGEventPost(kCGHIDEventTap, theEvent)  
+            theEvent2 = CGEventCreateMouseEvent(None, kCGEventRightMouseUp, (posx,posy), kCGMouseButtonRight)  
+            CGEventPost(kCGHIDEventTap, theEvent2)  
+
+      
+    def mouseDoubleClick(posx, posy):  
+        '''''perfrom a double left click'''  
+        theEvent = CGEventCreateMouseEvent(None, kCGEventLeftMouseDown, (posx,posy), kCGMouseButtonLeft);    
+        CGEventPost(kCGHIDEventTap, theEvent);    
+        CGEventSetType(theEvent, kCGEventLeftMouseUp);    
+        CGEventPost(kCGHIDEventTap, theEvent);   
+        CGEventSetIntegerValueField(theEvent, kCGMouseEventClickState, 2);     
+        CGEventSetType(theEvent, kCGEventLeftMouseDown);    
+        CGEventPost(kCGHIDEventTap, theEvent);    
+        CGEventSetType(theEvent, kCGEventLeftMouseUp);   
+        CGEventPost(kCGHIDEventTap, theEvent);  
+      
+    def mouseScroll(distance):    
+        ''''' 
+        @param movement: lines to scroll, Integer  
+        @param direction: scroll up or scroll down, 1:scroll up, -1:scroll down  
+        '''        
+            
+        theEvent = CGEventCreateScrollWheelEvent(None, kCGScrollEventUnitLine, 1, distance)  
+        CGEventPost(kCGHIDEventTap, theEvent)        
+        # CGPostScrollWheelEvent(10, -3)  
+      
+
+
+    def __init__(self, arg):
+        super(MouseEvent, self).__init__()
+        self.arg = arg
+        
+
+
 def keyboardInput(str):
     pyperclip.copy(str)
     keyBoardEventCommandType(0x09)
@@ -26,134 +175,6 @@ def keyBoardEventType(key):
     push = CGEventCreateKeyboardEvent(None, key, True)
     CGEventPost(kCGHIDEventTap, push)
 
-def _mouseEvent(type, posx, posy):  
-    theEvent = CGEventCreateMouseEvent(None, type, (posx,posy), kCGMouseButtonLeft)  
-    CGEventPost(kCGHIDEventTap, theEvent)  
-      
-def mouseMoveTo(posx, posy):  
-    _mouseEvent(kCGEventMouseMoved, posx, posy)  
-
-def mousePressMove(posx, posy, k):  
-    print 'mousePressMove',posx,posy
-    ourEvent = CGEventCreate(None);  
-    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
-    nextX = (1+k) *(posx)+currentpos.x
-    nextY = (1+k) *(posy)+ currentpos.y
-    if (nextX>=0)&(nextY>=0):
-        _mouseEvent(kCGEventLeftMouseDragged, nextX, nextY)
-        # _mouseEvent(kCGEventMouseMoved,nextX, nextY)
-
-
-
-def mouseMove(posx, posy, k):  
-
-    ourEvent = CGEventCreate(None);  
-    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
-    nextX = (1+k) *(posx)+currentpos.x
-    nextY = (1+k) *(posy)+ currentpos.y
-    if (nextX>=0)&(nextY>=0):
-        
-        _mouseEvent(kCGEventMouseMoved,nextX, nextY)
-    
-        
-def mouseDoubleClickHere():
-    ourEvent = CGEventCreate(None);  
-    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
-    mouseDoubleClick(currentpos.x,currentpos.y)
-
-
-def mouseLeftClickHere():
-    ourEvent = CGEventCreate(None);  
-    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
-    mouseLeftClick(currentpos.x,currentpos.y)
-      
-
-def mouseClickDownHere():  
-    ourEvent = CGEventCreate(None);  
-    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
-    mouseClickDown(currentpos.x,currentpos.y)
-
-def mouseClickDown(posx, posy):  
-    _mouseEvent(kCGEventLeftMouseDown, posx, posy)  
-      
-
-def mouseClickUpHere():  
-    ourEvent = CGEventCreate(None);  
-    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
-    mouseClickUp(currentpos.x,currentpos.y)
-
-def mouseClickUp(posx, posy):  
-    _mouseEvent(kCGEventLeftMouseUp, posx, posy)  
-      
-def mouseDrag(posx, posy):  
-    _mouseEvent(kCGEventLeftMouseDragged, posx, posy)  
-      
-def mouseClick(posx, posy):  
-    '''''perform a left click'''  
-    _mouseEvent(kCGEventLeftMouseDown, posx, posy)  
-    _mouseEvent(kCGEventLeftMouseUp, posx, posy)  
-      
-
-def mouseLeftClickUpHere():
-    ourEvent = CGEventCreate(None);  
-    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
-    mouseLeftClickUp(currentpos.x,currentpos.y)
-
-def mouseLeftClickUp(posx, posy):  
-    theEvent = CGEventCreateMouseEvent(None,kCGEventLeftMouseUp , (posx,posy), kCGMouseButtonLeft)  
-    CGEventPost(kCGHIDEventTap, theEvent)  
-
-def mouseLeftClickDownHere():
-    ourEvent = CGEventCreate(None);  
-    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
-    mouseLeftClickDown(currentpos.x,currentpos.y)
-      
-def mouseLeftClickDown(posx, posy):  
-    theEvent2 = CGEventCreateMouseEvent(None, kCGEventLeftMouseDown, (posx,posy), kCGMouseButtonLeft)  
-    CGEventPost(kCGHIDEventTap, theEvent2) 
-
-
-def mouseLeftClick(posx, posy):  
-    theEvent = CGEventCreateMouseEvent(None, kCGEventLeftMouseDown, (posx,posy), kCGMouseButtonLeft)  
-    CGEventPost(kCGHIDEventTap, theEvent)  
-    theEvent2 = CGEventCreateMouseEvent(None, kCGEventLeftMouseUp, (posx,posy), kCGMouseButtonLeft)  
-    CGEventPost(kCGHIDEventTap, theEvent2) 
-
-
-def mouseRightClickHere():  
-    ourEvent = CGEventCreate(None);  
-    currentpos=CGEventGetLocation(ourEvent); # Save current mouse position  |
-    mouseRightClick(currentpos.x,currentpos.y)
-
-def mouseRightClick(posx, posy):  
-        theEvent = CGEventCreateMouseEvent(None, kCGEventRightMouseDown, (posx,posy), kCGMouseButtonRight)  
-        CGEventPost(kCGHIDEventTap, theEvent)  
-        theEvent2 = CGEventCreateMouseEvent(None, kCGEventRightMouseUp, (posx,posy), kCGMouseButtonRight)  
-        CGEventPost(kCGHIDEventTap, theEvent2)  
-
-  
-def mouseDoubleClick(posx, posy):  
-    '''''perfrom a double left click'''  
-    theEvent = CGEventCreateMouseEvent(None, kCGEventLeftMouseDown, (posx,posy), kCGMouseButtonLeft);    
-    CGEventPost(kCGHIDEventTap, theEvent);    
-    CGEventSetType(theEvent, kCGEventLeftMouseUp);    
-    CGEventPost(kCGHIDEventTap, theEvent);   
-    CGEventSetIntegerValueField(theEvent, kCGMouseEventClickState, 2);     
-    CGEventSetType(theEvent, kCGEventLeftMouseDown);    
-    CGEventPost(kCGHIDEventTap, theEvent);    
-    CGEventSetType(theEvent, kCGEventLeftMouseUp);   
-    CGEventPost(kCGHIDEventTap, theEvent);  
-  
-def mouseScroll(distance):    
-    ''''' 
-    @param movement: lines to scroll, Integer  
-    @param direction: scroll up or scroll down, 1:scroll up, -1:scroll down  
-    '''        
-        
-    theEvent = CGEventCreateScrollWheelEvent(None, kCGScrollEventUnitLine, 1, distance)  
-    CGEventPost(kCGHIDEventTap, theEvent)        
-    # CGPostScrollWheelEvent(10, -3)  
-  
   
 if __name__ == '__main__':  
 
