@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6A93593B2024475F00D7EFDD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A93593A2024475F00D7EFDD /* AppDelegate.m */; };
+		6A93593E2024475F00D7EFDD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A93593D2024475F00D7EFDD /* ViewController.m */; };
+		6A9359402024475F00D7EFDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A93593F2024475F00D7EFDD /* Assets.xcassets */; };
+		6A9359432024475F00D7EFDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A9359412024475F00D7EFDD /* Main.storyboard */; };
+		6A9359462024475F00D7EFDD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9359452024475F00D7EFDD /* main.m */; };
+		6A9359512024475F00D7EFDD /* SmartMacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9359502024475F00D7EFDD /* SmartMacTests.m */; };
+		6A93595C2024475F00D7EFDD /* SmartMacUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A93595B2024475F00D7EFDD /* SmartMacUITests.m */; };
+		6A93596B2024517A00D7EFDD /* MyMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A93596A2024517A00D7EFDD /* MyMenu.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6A93594D2024475F00D7EFDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6A93592E2024475F00D7EFDD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A9359352024475F00D7EFDD;
+			remoteInfo = SmartMac;
+		};
+		6A9359582024475F00D7EFDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6A93592E2024475F00D7EFDD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A9359352024475F00D7EFDD;
+			remoteInfo = SmartMac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6A9359362024475F00D7EFDD /* SmartMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A9359392024475F00D7EFDD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6A93593A2024475F00D7EFDD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6A93593C2024475F00D7EFDD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6A93593D2024475F00D7EFDD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6A93593F2024475F00D7EFDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6A9359422024475F00D7EFDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6A9359442024475F00D7EFDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A9359452024475F00D7EFDD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6A9359472024475F00D7EFDD /* SmartMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmartMac.entitlements; sourceTree = "<group>"; };
+		6A93594C2024475F00D7EFDD /* SmartMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A9359502024475F00D7EFDD /* SmartMacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartMacTests.m; sourceTree = "<group>"; };
+		6A9359522024475F00D7EFDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A9359572024475F00D7EFDD /* SmartMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A93595B2024475F00D7EFDD /* SmartMacUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartMacUITests.m; sourceTree = "<group>"; };
+		6A93595D2024475F00D7EFDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A9359692024517A00D7EFDD /* MyMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMenu.h; sourceTree = "<group>"; };
+		6A93596A2024517A00D7EFDD /* MyMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyMenu.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6A9359332024475F00D7EFDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A9359492024475F00D7EFDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A9359542024475F00D7EFDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6A93592D2024475F00D7EFDD = {
+			isa = PBXGroup;
+			children = (
+				6A9359382024475F00D7EFDD /* SmartMac */,
+				6A93594F2024475F00D7EFDD /* SmartMacTests */,
+				6A93595A2024475F00D7EFDD /* SmartMacUITests */,
+				6A9359372024475F00D7EFDD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6A9359372024475F00D7EFDD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6A9359362024475F00D7EFDD /* SmartMac.app */,
+				6A93594C2024475F00D7EFDD /* SmartMacTests.xctest */,
+				6A9359572024475F00D7EFDD /* SmartMacUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6A9359382024475F00D7EFDD /* SmartMac */ = {
+			isa = PBXGroup;
+			children = (
+				6A9359392024475F00D7EFDD /* AppDelegate.h */,
+				6A93593A2024475F00D7EFDD /* AppDelegate.m */,
+				6A93593C2024475F00D7EFDD /* ViewController.h */,
+				6A93593D2024475F00D7EFDD /* ViewController.m */,
+				6A9359692024517A00D7EFDD /* MyMenu.h */,
+				6A93596A2024517A00D7EFDD /* MyMenu.m */,
+				6A93593F2024475F00D7EFDD /* Assets.xcassets */,
+				6A9359412024475F00D7EFDD /* Main.storyboard */,
+				6A9359442024475F00D7EFDD /* Info.plist */,
+				6A9359452024475F00D7EFDD /* main.m */,
+				6A9359472024475F00D7EFDD /* SmartMac.entitlements */,
+			);
+			path = SmartMac;
+			sourceTree = "<group>";
+		};
+		6A93594F2024475F00D7EFDD /* SmartMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				6A9359502024475F00D7EFDD /* SmartMacTests.m */,
+				6A9359522024475F00D7EFDD /* Info.plist */,
+			);
+			path = SmartMacTests;
+			sourceTree = "<group>";
+		};
+		6A93595A2024475F00D7EFDD /* SmartMacUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6A93595B2024475F00D7EFDD /* SmartMacUITests.m */,
+				6A93595D2024475F00D7EFDD /* Info.plist */,
+			);
+			path = SmartMacUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6A9359352024475F00D7EFDD /* SmartMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A9359602024475F00D7EFDD /* Build configuration list for PBXNativeTarget "SmartMac" */;
+			buildPhases = (
+				6A9359322024475F00D7EFDD /* Sources */,
+				6A9359332024475F00D7EFDD /* Frameworks */,
+				6A9359342024475F00D7EFDD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmartMac;
+			productName = SmartMac;
+			productReference = 6A9359362024475F00D7EFDD /* SmartMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6A93594B2024475F00D7EFDD /* SmartMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A9359632024475F00D7EFDD /* Build configuration list for PBXNativeTarget "SmartMacTests" */;
+			buildPhases = (
+				6A9359482024475F00D7EFDD /* Sources */,
+				6A9359492024475F00D7EFDD /* Frameworks */,
+				6A93594A2024475F00D7EFDD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6A93594E2024475F00D7EFDD /* PBXTargetDependency */,
+			);
+			name = SmartMacTests;
+			productName = SmartMacTests;
+			productReference = 6A93594C2024475F00D7EFDD /* SmartMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6A9359562024475F00D7EFDD /* SmartMacUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A9359662024475F00D7EFDD /* Build configuration list for PBXNativeTarget "SmartMacUITests" */;
+			buildPhases = (
+				6A9359532024475F00D7EFDD /* Sources */,
+				6A9359542024475F00D7EFDD /* Frameworks */,
+				6A9359552024475F00D7EFDD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6A9359592024475F00D7EFDD /* PBXTargetDependency */,
+			);
+			name = SmartMacUITests;
+			productName = SmartMacUITests;
+			productReference = 6A9359572024475F00D7EFDD /* SmartMacUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6A93592E2024475F00D7EFDD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "李杰";
+				TargetAttributes = {
+					6A9359352024475F00D7EFDD = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					6A93594B2024475F00D7EFDD = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6A9359352024475F00D7EFDD;
+					};
+					6A9359562024475F00D7EFDD = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6A9359352024475F00D7EFDD;
+					};
+				};
+			};
+			buildConfigurationList = 6A9359312024475F00D7EFDD /* Build configuration list for PBXProject "SmartMac" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6A93592D2024475F00D7EFDD;
+			productRefGroup = 6A9359372024475F00D7EFDD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6A9359352024475F00D7EFDD /* SmartMac */,
+				6A93594B2024475F00D7EFDD /* SmartMacTests */,
+				6A9359562024475F00D7EFDD /* SmartMacUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6A9359342024475F00D7EFDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A9359402024475F00D7EFDD /* Assets.xcassets in Resources */,
+				6A9359432024475F00D7EFDD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A93594A2024475F00D7EFDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A9359552024475F00D7EFDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6A9359322024475F00D7EFDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A93593E2024475F00D7EFDD /* ViewController.m in Sources */,
+				6A9359462024475F00D7EFDD /* main.m in Sources */,
+				6A93596B2024517A00D7EFDD /* MyMenu.m in Sources */,
+				6A93593B2024475F00D7EFDD /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A9359482024475F00D7EFDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A9359512024475F00D7EFDD /* SmartMacTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A9359532024475F00D7EFDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A93595C2024475F00D7EFDD /* SmartMacUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6A93594E2024475F00D7EFDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A9359352024475F00D7EFDD /* SmartMac */;
+			targetProxy = 6A93594D2024475F00D7EFDD /* PBXContainerItemProxy */;
+		};
+		6A9359592024475F00D7EFDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A9359352024475F00D7EFDD /* SmartMac */;
+			targetProxy = 6A9359582024475F00D7EFDD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6A9359412024475F00D7EFDD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A9359422024475F00D7EFDD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6A93595E2024475F00D7EFDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6A93595F2024475F00D7EFDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6A9359612024475F00D7EFDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SmartMac/SmartMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9622PG928E;
+				INFOPLIST_FILE = SmartMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderjacklee.SmartMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6A9359622024475F00D7EFDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SmartMac/SmartMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9622PG928E;
+				INFOPLIST_FILE = SmartMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderjacklee.SmartMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6A9359642024475F00D7EFDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9622PG928E;
+				INFOPLIST_FILE = SmartMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderjacklee.SmartMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmartMac.app/Contents/MacOS/SmartMac";
+			};
+			name = Debug;
+		};
+		6A9359652024475F00D7EFDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9622PG928E;
+				INFOPLIST_FILE = SmartMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderjacklee.SmartMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmartMac.app/Contents/MacOS/SmartMac";
+			};
+			name = Release;
+		};
+		6A9359672024475F00D7EFDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9622PG928E;
+				INFOPLIST_FILE = SmartMacUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderjacklee.SmartMacUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SmartMac;
+			};
+			name = Debug;
+		};
+		6A9359682024475F00D7EFDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9622PG928E;
+				INFOPLIST_FILE = SmartMacUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderjacklee.SmartMacUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SmartMac;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6A9359312024475F00D7EFDD /* Build configuration list for PBXProject "SmartMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A93595E2024475F00D7EFDD /* Debug */,
+				6A93595F2024475F00D7EFDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A9359602024475F00D7EFDD /* Build configuration list for PBXNativeTarget "SmartMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A9359612024475F00D7EFDD /* Debug */,
+				6A9359622024475F00D7EFDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A9359632024475F00D7EFDD /* Build configuration list for PBXNativeTarget "SmartMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A9359642024475F00D7EFDD /* Debug */,
+				6A9359652024475F00D7EFDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A9359662024475F00D7EFDD /* Build configuration list for PBXNativeTarget "SmartMacUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A9359672024475F00D7EFDD /* Debug */,
+				6A9359682024475F00D7EFDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6A93592E2024475F00D7EFDD /* Project object */;
+}
