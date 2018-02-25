@@ -30,9 +30,17 @@ class UdpServer(object):
 
             elif data['action'] == 'mouseDoubleClick':
                 print 'double'
+                p = mouse.position()
+                mouse.press(p[0],p[1])
+                mouse.release(p[0],p[1])
+                mouse.press(p[0],p[1])
+                mouse.release(p[0],p[1])
 
             elif data['action'] == 'mouseSingleClick':
                 print 'single'
+                mouse.press(p[0],p[1])
+                mouse.release(p[0],p[1])
+
             elif data['action'] == 'leftClickDown':
                 print 'leftClickDown'
             elif data['action'] == 'leftClickUp':
