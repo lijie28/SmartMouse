@@ -23,6 +23,7 @@ class UdpServer(object):
 
             data = eval(revcData)
             # print data['action']
+            mouse = PyMouse()
             if data['action'] == 'mouseMove':
                 print data['value']
                 p = mouse.position()
@@ -38,6 +39,7 @@ class UdpServer(object):
 
             elif data['action'] == 'mouseSingleClick':
                 print 'single'
+                p = mouse.position()
                 mouse.press(p[0],p[1])
                 mouse.release(p[0],p[1])
 
