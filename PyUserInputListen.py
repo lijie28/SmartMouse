@@ -1,7 +1,7 @@
 # -*- coding:utf8 -*-
 
 from pymouse import PyMouse
-from pykeyboard import PyKeyboard
+# from pykeyboard import PyKeyboard
 
 
 ms = PyMouse()
