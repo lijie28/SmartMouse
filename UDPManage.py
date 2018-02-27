@@ -7,7 +7,7 @@ sys.setdefaultencoding('utf-8')
 
 import socket
 import time  
-import testPyMouseListe as MouseCtrl
+from testPyMouseListe import MouseEvent as MouseCtrl
 import json
 
 class UdpServer(object):

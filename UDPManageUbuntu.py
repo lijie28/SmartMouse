@@ -7,9 +7,8 @@ sys.setdefaultencoding('utf-8')
 
 import socket
 import time  
-# import testPyMouseListe as MouseCtrl
+import PyUserInputListen as pyuip
 import json
-from pymouse import PyMouse
 
 class UdpServer(object):
     def tcpServer(self):
@@ -23,42 +22,41 @@ class UdpServer(object):
 
             data = eval(revcData)
             # print data['action']
-            mouse = PyMouse()
             if data['action'] == 'mouseMove':
                 print data['value']
-                p = mouse.position()
-                mouse.move(p[0]+data['value']['x'],p[1]+data['value']['y'])
+                pyuip.mouseMove(data['value']['x'],data['value']['y'],data['value']['k'])
 
             elif data['action'] == 'mouseDoubleClick':
                 print 'double'
-                p = mouse.position()
-                mouse.press(p[0],p[1])
-                mouse.release(p[0],p[1])
-                mouse.press(p[0],p[1])
-                mouse.release(p[0],p[1])
+                pyuip.doubleClick()
 
             elif data['action'] == 'mouseSingleClick':
                 print 'single'
-                p = mouse.position()
-                mouse.press(p[0],p[1])
-                mouse.release(p[0],p[1])
-
+                pyuip.singleClick()
             elif data['action'] == 'leftClickDown':
                 print 'leftClickDown'
+                pyuip.pressDown()
             elif data['action'] == 'leftClickUp':
                 print 'leftClickUp'
+                pyuip.pressUp()
             elif data['action'] == 'rightClick':
                 print 'rightClick'
+                pyuip.rightClick()
             elif data['action'] == 'keyboardInput':
                 print 'keyboardInput'
+                pyuip.keyboardInput(data['value'])
             elif data['action'] == 'mousePressMove':
                 print data['value']
+                pyuip.pressMove(data['value']['x'],data['value']['y'],data['value']['k'])
             elif data['action'] == 'keyboardType':
                 print 'keyboardType',data['value']
+                pyuip.keyBoardEventType(data['value'])
             elif data['action'] == 'keyboardCommandType':
                 print 'keyboardCommandType',data['value']
+                pyuip.keyBoardEventCommandType(data['value'])
             elif data['action'] == 'mouseScroll':
                 print 'mouseScroll',data['value']
+                pyuip.mouseScroll(data['value'])
 
             elif data['action'] == 'searchForConection':
                 # mes = "收到 %d" % count
@@ -66,10 +64,11 @@ class UdpServer(object):
                 mes = json.dumps({'action': 'receive','value': name })
                 
                 sendDataLen = sock.sendto(mes,(remoteHost, remotePort))
-            
+                print "收到 %d" % count
                 
             #回应
             # 
+            
 
 
             

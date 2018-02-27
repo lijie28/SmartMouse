@@ -15,6 +15,7 @@
 		04AC3A5B1FCF096300102DA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AC3A591FCF096300102DA6 /* LaunchScreen.storyboard */; };
 		04AC3A661FCF096300102DA6 /* SmartPhoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AC3A651FCF096300102DA6 /* SmartPhoneTests.m */; };
 		04AC3A711FCF096300102DA6 /* SmartPhoneUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AC3A701FCF096300102DA6 /* SmartPhoneUITests.m */; };
+		04F358B42044ED2C00038830 /* wakeonlan.c in Sources */ = {isa = PBXBuildFile; fileRef = 04F358B22044ED2C00038830 /* wakeonlan.c */; };
 		6A02FFB61FDFB6B9003C38E2 /* SubCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A02FFB51FDFB6B9003C38E2 /* SubCollectionViewCell.m */; };
 		6A85D7E61FCFADE8003E4BEB /* UDPManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A85D7E51FCFADE8003E4BEB /* UDPManage.m */; };
 		6A85D7E91FCFAF1B003E4BEB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A85D7E81FCFAEDE003E4BEB /* CFNetwork.framework */; };
@@ -55,6 +56,8 @@
 		04AC3A6C1FCF096300102DA6 /* SmartPhoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartPhoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04AC3A701FCF096300102DA6 /* SmartPhoneUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartPhoneUITests.m; sourceTree = "<group>"; };
 		04AC3A721FCF096300102DA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04F358B22044ED2C00038830 /* wakeonlan.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = wakeonlan.c; sourceTree = "<group>"; };
+		04F358B32044ED2C00038830 /* wakeonlan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wakeonlan.h; sourceTree = "<group>"; };
 		3EF3C3B62FD8286FE907B907 /* Pods-SmartPhone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartPhone.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartPhone/Pods-SmartPhone.release.xcconfig"; sourceTree = "<group>"; };
 		6A02FFB41FDFB6B9003C38E2 /* SubCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubCollectionViewCell.h; sourceTree = "<group>"; };
 		6A02FFB51FDFB6B9003C38E2 /* SubCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubCollectionViewCell.m; sourceTree = "<group>"; };
@@ -121,6 +124,8 @@
 				6A02FFB51FDFB6B9003C38E2 /* SubCollectionViewCell.m */,
 				04AC3A4E1FCF096200102DA6 /* AppDelegate.h */,
 				04AC3A4F1FCF096200102DA6 /* AppDelegate.m */,
+				04F358B32044ED2C00038830 /* wakeonlan.h */,
+				04F358B22044ED2C00038830 /* wakeonlan.c */,
 				04AC3A511FCF096200102DA6 /* ViewController.h */,
 				04AC3A521FCF096200102DA6 /* ViewController.m */,
 				6A85D7E41FCFADE8003E4BEB /* UDPManage.h */,
@@ -368,6 +373,7 @@
 			files = (
 				6A85D7E61FCFADE8003E4BEB /* UDPManage.m in Sources */,
 				04AC3A531FCF096200102DA6 /* ViewController.m in Sources */,
+				04F358B42044ED2C00038830 /* wakeonlan.c in Sources */,
 				04AC3A501FCF096200102DA6 /* AppDelegate.m in Sources */,
 				6A02FFB61FDFB6B9003C38E2 /* SubCollectionViewCell.m in Sources */,
 				04AC3A4D1FCF096200102DA6 /* main.m in Sources */,

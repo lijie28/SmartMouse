@@ -24,7 +24,7 @@ class MouseEvent(object):
     def getpos():
         ourEvent = CGEventCreate(None);  
         currentpos=CGEventGetLocation(ourEvent); # Save current mouse 
-        return currentpos.x,currentpos.y  |
+        return currentpos.x,currentpos.y    
           
     def move(posx, posy):  
         _mouseEvent(kCGEventMouseMoved, posx, posy)  
@@ -54,7 +54,7 @@ class MouseEvent(object):
             _mouseEvent(kCGEventMouseMoved,nextX, nextY)
         
     def click(clickType):
-        if clickType = '':
+        if clickType == '':
             pass
 
 
@@ -150,11 +150,49 @@ class MouseEvent(object):
         @param direction: scroll up or scroll down, 1:scroll up, -1:scroll down  
         '''        
             
-        theEvent = CGEventCreateScrollWheelEvent(None, kCGScrollEventUnitLine, 1, distance)  
-        CGEventPost(kCGHIDEventTap, theEvent)        
+        # theEvent = CGEventCreateScrollWheelEvent(None, kCGScrollEventUnitLine, 1, distance)  
+        # CGEventPost(kCGHIDEventTap, theEvent)        
         # CGPostScrollWheelEvent(10, -3)  
-      
+        def scroll(self, vertical=None, horizontal=None, depth=None):
+                #Local submethod for generating Mac scroll events in one axis at a time
+            def scroll_event(y_move=0, x_move=0, z_move=0, n=1):
+                for _ in range(abs(n)):
+                    scrollWheelEvent = Quartz.CGEventCreateScrollWheelEvent(
+                        None,  # No source
+                        Quartz.kCGScrollEventUnitLine,  # Unit of measurement is lines
+                        3,  # Number of wheels(dimensions)
+                        y_move,
+                        x_move,
+                        z_move)
+                    Quartz.CGEventPost(Quartz.kCGHIDEventTap, scrollWheelEvent)
 
+            #Execute vertical then horizontal then depth scrolling events
+            if vertical is not None:
+                vertical = int(vertical)
+                if vertical == 0:   # Do nothing with 0 distance
+                    pass
+                elif vertical > 0:  # Scroll up if positive
+                    scroll_event(y_move=1, n=vertical)
+                else:  # Scroll down if negative
+                    scroll_event(y_move=-1, n=abs(vertical))
+            if horizontal is not None:
+                horizontal = int(horizontal)
+                if horizontal == 0:  # Do nothing with 0 distance
+                    pass
+                elif horizontal > 0:  # Scroll right if positive
+                    scroll_event(x_move=1, n=horizontal)
+                else:  # Scroll left if negative
+                    scroll_event(x_move=-1, n=abs(horizontal))
+            if depth is not None:
+                depth = int(depth)
+                if depth == 0:  # Do nothing with 0 distance
+                    pass
+                elif vertical > 0:  # Scroll "out" if positive
+                    scroll_event(z_move=1, n=depth)
+                else:  # Scroll "in" if negative
+                    scroll_event(z_move=-1, n=abs(depth))
+
+        scroll(distance)
 
     def __init__(self, arg):
         super(MouseEvent, self).__init__()

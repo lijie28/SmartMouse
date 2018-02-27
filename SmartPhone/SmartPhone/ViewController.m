@@ -9,6 +9,10 @@
 #import "ViewController.h"
 #import "UDPManage.h"
 #import "SubCollectionViewCell.h"
+
+
+#import "wakeonlan.h"
+
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 
@@ -40,7 +44,7 @@
 int count;
 @implementation ViewController
 
-#define arrTitle @[@"回车",@"删除",@"空格",@"Tab",@"Esc",@"搜索",@"复制",@"粘贴",@"剪切",@"撤消",@"F1",@"F2",@"F3",@"F4",@"F5",@"F6",@"F7",@"F8",@"F9",@"F10",@"F11",@"F12"]
+#define arrTitle @[@"开机",@"回车",@"删除",@"空格",@"Tab",@"Esc",@"搜索",@"复制",@"粘贴",@"剪切",@"撤消",@"F1",@"F2",@"F3",@"F4",@"F5",@"F6",@"F7",@"F8",@"F9",@"F10",@"F11",@"F12"]
 
 
 #pragma mark - uicollectionView 代理事件
@@ -112,6 +116,13 @@ int count;
         [self keyboardCommandType:kVK_Space];
     }else if ([arrTitle[indexPath.row] isEqualToString:@"Tab"]){
         [self keyboardType:kVK_Tab];
+    }else if ([arrTitle[indexPath.row] isEqualToString:@"开机"]){
+//        wakeup();0xFFFFFFFF
+            unsigned port = 60000;
+//            char quiet = 0;
+            unsigned long bcast = 0xFFFFFFFF;
+        send_wol("00:E0:70:31:05:A3",port,bcast);
+        NSLog(@"点击了wakeup");
     }
     
 
